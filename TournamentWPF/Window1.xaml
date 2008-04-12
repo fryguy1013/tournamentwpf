@@ -7,15 +7,18 @@
         <DataTemplate x:Key="MatchTemplate" DataType="TournamentWPF.Match">
             <WrapPanel HorizontalAlignment="Stretch" Margin="8 8 8 8">
                 <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RadiusX="5" Fill="Cyan" />
-                <TextBox Text="{Binding Path=Left}" />
+                <TextBox Width="80" Text="{Binding Path=Left}" />
                 <Label>vs.</Label>
-                <TextBox Text="{Binding Path=Right}" />
+                <TextBox Width="80" Text="{Binding Path=Right}" />
                 <Label>Winner:</Label>
-                <TextBox Text="{Binding Path=Winner}" />
-            </WrapPanel>            
+                <Label Content="{Binding Path=Winner}" />
+            </WrapPanel>
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ItemsControl Name="Reviews" ItemTemplate="{StaticResource MatchTemplate}" />
+        <StackPanel>
+            <Button Click="Button_Click">asdasd</Button>
+            <ItemsControl Name="Reviews" ItemTemplate="{StaticResource MatchTemplate}" />
+        </StackPanel>
     </Grid>
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace TournamentWPF
 {
@@ -19,7 +20,7 @@ namespace TournamentWPF
     /// </summary>
     public partial class Window1 : Window
     {
-        private List<Match> matches = new List<Match>();
+        private ObservableCollection<Match> matches = new ObservableCollection<Match>();
 
         public Window1()
         {
@@ -31,12 +32,29 @@ namespace TournamentWPF
 
             this.Reviews.ItemsSource = matches;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            matches[0].Right = "Purple";
+        }
     }
 
 
-    public class Match
+    public class Match : DependencyObject
     {
-        public string Left { get; set; }
+
+
+        public string Left
+        {
+            get { return (string)GetValue(LeftProperty); }
+            set { SetValue(LeftProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Left.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty LeftProperty =
+            DependencyProperty.Register("Left", typeof(string), typeof(Match), new UIPropertyMetadata(""));
+
+
         public string Right { get; set; }
         public string Winner { get; set; }
     }
