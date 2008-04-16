@@ -20,42 +20,55 @@ namespace TournamentWPF
     /// </summary>
     public partial class Window1 : Window
     {
-        private ObservableCollection<Match> matches = new ObservableCollection<Match>();
+        private Random rand = new Random();
+        private Event mainEvent = new Event("tournament.xml");
 
         public Window1()
         {
             InitializeComponent();
 
-            matches.Add(new Match { Left = "Left", Right = "Right", Winner = "Winner" });
-            matches.Add(new Match { Left = "Left", Right = "Right", Winner = "Winner" });
-            matches.Add(new Match { Left = "Left", Right = "Right", Winner = "Winner" });
+            mainEvent.LoadMatches();
 
-            this.Reviews.ItemsSource = matches;
+            var query = mainEvent.Tournaments.Single().Robots.Values;
+            Robots.ItemsSource = query;
+
+            //UpdateMatches();
+        }
+
+        /*
+        private void UpdateMatches()
+        {
+            var query = from match in mainEvent.Tournaments[0].Matches.Values
+                        where match.Robots.Count(r => r.Robot != null) > 0
+                        orderby match.Winner != null ? 0 : 1
+                        select new
+                        {
+                            RedRobot = match.Robots[0].Robot != null ? match.Robots[0].Robot.Name : "",
+                            BlueRobot = match.Robots[1].Robot != null ? match.Robots[1].Robot.Name : "",
+                            Winner = match.Winner != null ? match.Winner.Name : "",
+                            RedWins = match.Winner != null && match.Winner == match.Robots[0].Robot,
+                            BlueWins = match.Winner != null && match.Winner == match.Robots[1].Robot,                            
+                        };
+            this.Matches.ItemsSource = query;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            matches[0].Right = "Purple";
+            Tournament t = mainEvent.Tournaments.Single();
+            Match match = (from m in t.Matches.Values
+                           where m.Winner == null &&
+                                 m.Robots.Count(r => r.Robot != null) == 2
+                           orderby rand.Next()
+                           select m).FirstOrDefault();
+            if (match == null)
+                return;
+
+            int winner = rand.Next(2);
+            match.Winner = match.Robots[winner].Robot;
+            match.Loser = match.Robots[1 - winner].Robot;
+
+            UpdateMatches();
         }
-    }
-
-
-    public class Match : DependencyObject
-    {
-
-
-        public string Left
-        {
-            get { return (string)GetValue(LeftProperty); }
-            set { SetValue(LeftProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Left.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty LeftProperty =
-            DependencyProperty.Register("Left", typeof(string), typeof(Match), new UIPropertyMetadata(""));
-
-
-        public string Right { get; set; }
-        public string Winner { get; set; }
+        */
     }
 }

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<events>
+  <event>
+    <name>Test #1</name>
+    <date>7-14-2007 4:32:00</date>
+    <tournaments>
+      <tournament>
+        <weightclass>1 lb</weightclass>
+        <robots>
+          <robot id="1">
+            <name>Emsee Fry Pants</name>
+            <team>Burntpopcorn.net</team>
+            <weight>14oz</weight>
+            <freq1>ch-75</freq1>
+            <freq2>ch-70</freq2>
+          </robot>
+          <robot id="2">
+            <name>Ground Flip Flops</name>
+            <team>Burntpopcorn.net</team>
+            <weight>14oz</weight>
+            <freq1>ch-75</freq1>
+            <freq2>ch-70</freq2>
+          </robot>
+          <robot id="3">
+            <name>MC Pee Pants</name>
+            <team>Fatcats</team>
+            <weight>14oz</weight>
+            <freq1>ch-75</freq1>
+            <freq2>ch-70</freq2>
+          </robot>
+        </robots>
+        <matches>
+        </matches>
+      </tournament>
+    </tournaments>
+  </event>
+</events>
