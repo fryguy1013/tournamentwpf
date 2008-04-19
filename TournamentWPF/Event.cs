@@ -18,7 +18,6 @@ namespace TournamentWPF
             {
                 XElement events = XElement.Load("Tournament.xml");
 
-
                 var thiselem = (from e in events.Descendants("event")
                                 select new
                                 {
@@ -51,6 +50,49 @@ namespace TournamentWPF
             }
         }
 
+        public void Save()
+        {
+            Console.WriteLine("------");
+            XElement xml = new XElement("event",
+                new XElement("name", Name),
+                new XElement("date", Date),
+                new XElement("tournaments",
+                    from t in Tournaments
+                    select new XElement("tournament",
+                        new XElement("weightclass", t.WeightClass),
+                        new XElement("robots",
+                            from r in t.Robots.Values
+                            select new XElement("robot",
+                                new XAttribute("id", r.Id),
+                                new XElement("name", r.Name),
+                                new XElement("team", r.Team),
+                                new XElement("weight", r.Weight),
+                                new XElement("freq1", r.Channel1),
+                                new XElement("freq2", r.Channel2)
+                            )
+                        ),
+                        new XElement("matches",
+                            from m in t.Matches.Values
+                            select new XElement("match",
+                                new XAttribute("matchid", m.MatchId),
+                                new XAttribute("winnerto", m.WinnerMatchSlotId != null ? m.WinnerMatchSlotId : ""),
+                                new XAttribute("loserto", m.LoserMatchSlotId != null ? m.LoserMatchSlotId : ""),
+                                new XElement("slots",
+                                    from ms in m.Robots
+                                    select new XElement("slot",
+                                        new XAttribute("robot", ms.Robot != null ? ms.Robot.Id.ToString() : ""),
+                                        new XAttribute("from", ms.WinnerFrom != null ? ms.WinnerFrom.MatchId : "")
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+
+            Console.WriteLine(xml);
+        }
+
         public override string ToString()
         {
             string ret = "";
@@ -69,7 +111,7 @@ namespace TournamentWPF
             XElement templates = XElement.Load("brackettemplates.xml");
 
             var bracket = (from c in templates.Descendants("bracket")
-                           where (string)c.Attribute("id") == "DE4"
+                           where (string)c.Attribute("id") == "DE8"
                            select c).Single();
 
             var matches = from m in bracket.Descendants("match")

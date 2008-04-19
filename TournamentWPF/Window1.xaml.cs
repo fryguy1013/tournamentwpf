@@ -29,13 +29,12 @@ namespace TournamentWPF
 
             mainEvent.LoadMatches();
 
-            var query = mainEvent.Tournaments.Single().Robots.Values;
-            Robots.ItemsSource = query;
+            //var query = mainEvent.Tournaments.Single().Robots.Values;
+            //Robots.ItemsSource = query;
 
-            //UpdateMatches();
+            UpdateMatches();
         }
 
-        /*
         private void UpdateMatches()
         {
             var query = from match in mainEvent.Tournaments[0].Matches.Values
@@ -68,7 +67,8 @@ namespace TournamentWPF
             match.Loser = match.Robots[1 - winner].Robot;
 
             UpdateMatches();
+
+            mainEvent.Save();
         }
-        */
     }
 }
