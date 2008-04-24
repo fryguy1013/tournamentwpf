@@ -21,19 +21,25 @@ namespace TournamentWPF
     public partial class Window1 : Window
     {
         private Random rand = new Random();
-        private Event mainEvent = new Event("tournament.xml");
+        private Event mainEvent;
 
         public Window1()
         {
             InitializeComponent();
+        }
 
-            mainEvent.LoadMatches();
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            mainEvent = new Event("tournament.xml");
+            if (mainEvent.Tournaments[0].Matches.Count() == 0)
+                mainEvent.LoadMatches();
 
             //var query = mainEvent.Tournaments.Single().Robots.Values;
             //Robots.ItemsSource = query;
 
             UpdateMatches();
         }
+
 
         private void UpdateMatches()
         {
@@ -68,7 +74,7 @@ namespace TournamentWPF
 
             UpdateMatches();
 
-            mainEvent.Save();
+            mainEvent.Save("tournament.xml");
         }
     }
 }

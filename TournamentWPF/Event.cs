@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
+using System.IO;
+using System.Xml;
 
 namespace TournamentWPF
 {
@@ -16,50 +18,109 @@ namespace TournamentWPF
         {
             try
             {
-                XElement events = XElement.Load("Tournament.xml");
+                XElement events = XElement.Load(filename);
 
-                var thiselem = (from e in events.Descendants("event")
-                                select new
-                                {
-                                    Name = (string)e.Element("name"),
-                                    Date = (string)e.Element("date"),
-                                    Tournaments = (from tournament in e.Descendants("tournament")
-                                                   select new Tournament
-                                                   {
-                                                       WeightClass = (string)tournament.Element("weightclass"),
-                                                       Robots = (from robot in e.Descendants("robot")
-                                                                 select new Robot
-                                                                 {
-                                                                     Id = (int)robot.Attribute("id"),
-                                                                     Name = (string)robot.Element("name"),
-                                                                     Team = (string)robot.Element("team"),
-                                                                     Weight = (string)robot.Element("weight"),
-                                                                     Channel1 = (string)robot.Element("freq1"),
-                                                                     Channel2 = (string)robot.Element("freq2"),
-                                                                 }).ToDictionary(r => r.Id),
-                                                   }).ToList(),
-                                }).Single();
+                var thiselem =
+                    (from e in events.Descendants("event")
+                    select new
+                    {
+                        Name = (string)e.Element("name"),
+                        Date = (string)e.Element("date"),
+                        Tournaments =
+                            (from tournament in e.Descendants("tournament")
+                            select new Tournament
+                            {
+                                WeightClass = (string)tournament.Element("weightclass"),
+                                FinalWinnerId = (string)tournament.Element("finalwinner"),
+                                Robots =
+                                    (from robot in e.Descendants("robot")
+                                    select new Robot
+                                    {
+                                        Id = (int)robot.Attribute("id"),
+                                        Name = (string)robot.Element("name"),
+                                        Team = (string)robot.Element("team"),
+                                        Weight = (string)robot.Element("weight"),
+                                        Channel1 = (string)robot.Element("freq1"),
+                                        Channel2 = (string)robot.Element("freq2"),
+                                    }).ToDictionary(r => r.Id),
+                                Matches =
+                                    (from match in e.Descendants("match")
+                                    select new Match
+                                    {
+                                        MatchId = (string)match.Attribute("matchid"),
+                                        WinnerMatchSlotId = (string)match.Attribute("winnerto"),
+                                        LoserMatchSlotId = (string)match.Attribute("loserto"),
+                                        Robots =
+                                            (from matchslot in match.Descendants("slot")
+                                            select new MatchSlot
+                                            {
+                                                RobotId = (string)matchslot.Attribute("robot"),
+                                                MatchFromId = (string)matchslot.Attribute("from")
+                                            }).ToList()
+                                    }).ToDictionary(m => m.MatchId)
+                            }).ToList(),
+                    }).Single();
 
                 Name = thiselem.Name;
                 Date = thiselem.Date;
                 Tournaments = thiselem.Tournaments;
+
+                foreach (Tournament t in Tournaments)
+                {
+                    if (t.FinalWinnerId != null && t.FinalWinnerId.Length > 0)
+                        t.FinalWinner = new MatchSlot { Robot = t.Robots[Int32.Parse(t.FinalWinnerId)] };
+                    else
+                        t.FinalWinner = new MatchSlot();
+
+                    foreach (Match match in t.Matches.Values)
+                    {
+                        foreach (MatchSlot ms in match.Robots)
+                        {
+                            ms.Match = match;
+                            if (ms.RobotId.Length > 0)
+                                ms.Robot = t.Robots[Int32.Parse(ms.RobotId)];
+                        }
+
+                        if (match.WinnerMatchSlotId != null && match.WinnerMatchSlotId.Length > 0)
+                        {
+                            if (match.WinnerMatchSlotId == "Winner")
+                            {
+                                match.WinnerMatchSlot = t.FinalWinner;
+                            }
+                            else
+                            {
+                                match.WinnerMatchSlot = (from ms in t.Matches[match.WinnerMatchSlotId].Robots
+                                                         where ms.MatchFromId == match.MatchId
+                                                         select ms).Single();
+                            }
+                        }
+                        if (match.LoserMatchSlotId != null && match.LoserMatchSlotId.Length > 0)
+                        {
+                            match.LoserMatchSlot = (from ms in t.Matches[match.LoserMatchSlotId].Robots
+                                                    where ms.MatchFromId == match.MatchId
+                                                    select ms).Single();
+                        }
+                    }
+                }
             }
-            catch (Exception e)
+            catch (IOException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
 
-        public void Save()
+        public void Save(string filename)
         {
             Console.WriteLine("------");
-            XElement xml = new XElement("event",
+            XElement xml = new XElement("events",
+              new XElement("event",
                 new XElement("name", Name),
                 new XElement("date", Date),
                 new XElement("tournaments",
                     from t in Tournaments
                     select new XElement("tournament",
                         new XElement("weightclass", t.WeightClass),
+                        new XElement("finalwinner", t.FinalWinner != null && t.FinalWinner.Robot != null ? t.FinalWinner.Robot.Id.ToString() : ""),
                         new XElement("robots",
                             from r in t.Robots.Values
                             select new XElement("robot",
@@ -81,16 +142,24 @@ namespace TournamentWPF
                                     from ms in m.Robots
                                     select new XElement("slot",
                                         new XAttribute("robot", ms.Robot != null ? ms.Robot.Id.ToString() : ""),
-                                        new XAttribute("from", ms.WinnerFrom != null ? ms.WinnerFrom.MatchId : "")
+                                        new XAttribute("from", ms.MatchFrom != null ? ms.MatchFrom.MatchId : "")
                                     )
                                 )
                             )
                         )
                     )
                 )
+              )
             );
 
-            Console.WriteLine(xml);
+            XmlWriterSettings xws = new XmlWriterSettings();
+            xws.OmitXmlDeclaration = true;
+            xws.Indent = true;
+
+            using (XmlWriter writer = XmlWriter.Create(filename, xws))
+            {
+                xml.WriteTo(writer);
+            }
         }
 
         public override string ToString()
@@ -173,6 +242,7 @@ namespace TournamentWPF
         public Dictionary<int, Robot> Robots { get; set; }
         public Dictionary<string, Match> Matches { get; set; }
         public MatchSlot FinalWinner { get; set; }
+        public string FinalWinnerId { get; set; }
 
         public Tournament()
         {
@@ -260,7 +330,16 @@ namespace TournamentWPF
                 value.WinnerFrom = this;
             }
         }
-        public MatchSlot LoserMatchSlot { get; set; }
+        private MatchSlot loserMatchSlot;
+        public MatchSlot LoserMatchSlot
+        {
+            get { return loserMatchSlot; }
+            set
+            {
+                loserMatchSlot = value;
+                value.LoserFrom = this;
+            }
+        }
 
         public string WinnerMatchSlotId { get; set; }
         public string LoserMatchSlotId { get; set; }
@@ -309,10 +388,15 @@ namespace TournamentWPF
         public Robot Robot { get; set; }
         public Match Match { get; set; }
         public Match WinnerFrom { get; set; }
+        public Match LoserFrom { get; set; }
+        public Match MatchFrom { get { if (WinnerFrom != null) return WinnerFrom; else return LoserFrom; } }
 
         public override string ToString()
         {
             return Robot != null ? Robot.Name : "n/a";
         }
+
+        public string RobotId { get; set; }
+        public string MatchFromId { get; set; }
     }
 }
