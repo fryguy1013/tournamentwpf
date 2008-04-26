@@ -41,19 +41,36 @@ namespace TournamentWPF
         }
 
 
+        class DisplayMatch
+        {
+            public string RedRobot { get; set; }
+            public string BlueRobot { get; set; }
+            public string Winner { get; set; }
+            public string MatchId { get; set; }
+            public bool RedWins { get; set; }
+            public bool BlueWins { get; set; }
+            public bool RedKnown { get; set; }
+            public bool BlueKnown { get; set; }
+        }
+
         private void UpdateMatches()
         {
+            bool full = true;
+
             var query = from match in mainEvent.Tournaments[0].Matches.Values
-                        where match.Robots.Count(r => r.Robot != null) > 0
-                        orderby match.Winner != null ? 0 : 1
-                        select new
+                        where full || match.Robots.Count(r => r.Robot != null) > 0
+                        orderby full ? match.MatchId.PadLeft(4, '0') : "",
+                                match.Winner != null ? 0 : 1
+                        select new DisplayMatch
                         {
-                            RedRobot = match.Robots[0].Robot != null ? match.Robots[0].Robot.Name : "",
-                            BlueRobot = match.Robots[1].Robot != null ? match.Robots[1].Robot.Name : "",
+                            RedRobot = match.RedRobot != null ? match.RedRobot.Name : match.Robots[0].Desc,
+                            BlueRobot = match.BlueRobot != null ? match.BlueRobot.Name : match.Robots[1].Desc,
                             Winner = match.Winner != null ? match.Winner.Name : "",
-                            RedWins = match.Winner != null && match.Winner == match.Robots[0].Robot,
-                            BlueWins = match.Winner != null && match.Winner == match.Robots[1].Robot,                            
-                            MatchId = match.MatchId
+                            RedWins = match.Winner != null && match.Winner == match.RedRobot,
+                            BlueWins = match.Winner != null && match.Winner == match.BlueRobot,                            
+                            MatchId = match.MatchId,
+                            RedKnown = match.RedRobot != null,
+                            BlueKnown = match.BlueRobot != null,
                         };
             this.Matches.ItemsSource = query.ToList();
         }
@@ -76,6 +93,11 @@ namespace TournamentWPF
             UpdateMatches();
 
             mainEvent.Save("tournament.xml");
+        }
+
+        private void Matches_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainTextBox.Text = (this.Matches.SelectedItem as DisplayMatch).RedRobot;
         }
     }
 }

@@ -391,6 +391,19 @@ namespace TournamentWPF
         public Match LoserFrom { get; set; }
         public Match MatchFrom { get { if (WinnerFrom != null) return WinnerFrom; else return LoserFrom; } }
 
+        public string Desc
+        {
+            get
+            {
+                if (WinnerFrom != null)
+                    return "(W" + WinnerFrom.MatchId + ")";
+                else if (LoserFrom != null)
+                    return "(L" + LoserFrom.MatchId + ")";
+                else
+                    return "";
+            }
+        }
+
         public override string ToString()
         {
             return Robot != null ? Robot.Name : "n/a";
