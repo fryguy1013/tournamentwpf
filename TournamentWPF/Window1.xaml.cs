@@ -53,8 +53,9 @@ namespace TournamentWPF
                             Winner = match.Winner != null ? match.Winner.Name : "",
                             RedWins = match.Winner != null && match.Winner == match.Robots[0].Robot,
                             BlueWins = match.Winner != null && match.Winner == match.Robots[1].Robot,                            
+                            MatchId = match.MatchId
                         };
-            this.Matches.ItemsSource = query;
+            this.Matches.ItemsSource = query.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

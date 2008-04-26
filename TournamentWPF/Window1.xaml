@@ -2,14 +2,14 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:custom="clr-namespace:TournamentWPF"
-    Title="Window1" Height="350" Width="350" Loaded="Window_Loaded">
+    Title="Window1" Height="1024" Width="1280" Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="MatchTemplate" DataType="TournamentWPF.Match">
             <Grid HorizontalAlignment="Stretch" Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <!--<ColumnDefinition Width="100"/>-->
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="0" RadiusX="5" RadiusY="5" Margin="2" x:Name="redrectangle">
                     <Rectangle.Style>
@@ -43,26 +43,32 @@
                         </Style>
                     </Rectangle.Style>
                 </Rectangle>
-                <Rectangle Grid.Column="2" Fill="Silver" RadiusX="5" RadiusY="5" Margin="2" x:Name="winnerrectangle"/>
+                <!--<Rectangle Grid.Column="2" Fill="Silver" RadiusX="5" RadiusY="5" Margin="2" x:Name="winnerrectangle"/>-->
                 
                 <Label Grid.Column="0" Width="100" Content="{Binding Path=RedRobot}" x:Name="RedLabel" />
                 <Label Grid.Column="1" Width="100" Content="{Binding Path=BlueRobot}" x:Name="BlueLabel" />
-                <Label Grid.Column="2" Width="100" Content="{Binding Path=Winner}" x:Name="WinnerLabel" />
+                <!--<Label Grid.Column="2" Width="100" Content="{Binding Path=Winner}" x:Name="WinnerLabel" />-->
             </Grid>
         </DataTemplate>
     </Window.Resources>
-    <Grid>   
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="Button_Click">asdasd</Button>            
-        <ScrollViewer Grid.Row="1" Name="scrollViewer1">
-            <StackPanel>
-                <ListBox Name="Matches" ItemTemplate="{StaticResource MatchTemplate}" />
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+    
+    <DockPanel>
+        <Grid DockPanel.Dock="Right" Width="230">   
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Click="Button_Click">asdasd</Button>            
+            <ScrollViewer Grid.Row="1" Name="scrollViewer1">
+                <StackPanel>
+                    <ListBox Name="Matches" ItemTemplate="{StaticResource MatchTemplate}" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <Grid>
+            <TextBox></TextBox>
+        </Grid>
+    </DockPanel>
 
     <!--
     <Window.Resources>
