@@ -1,0 +1,156 @@
+﻿<events>
+  <event>
+    <name>Test #1</name>
+    <date>7-14-2007 4:32:00</date>
+    <tournaments>
+      <tournament>
+        <weightclass>1 lb</weightclass>
+        <finalwinner>3</finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Rector</name>
+            <team>Burntpopcorn.net</team>
+            <weight>14oz</weight>
+            <freq1>ch-75</freq1>
+            <freq2>ch-70</freq2>
+          </robot>
+          <robot id="2">
+            <name>Pooky</name>
+            <team>Burntpopcorn.net</team>
+            <weight>14oz</weight>
+            <freq1>ch-75</freq1>
+            <freq2>ch-70</freq2>
+          </robot>
+          <robot id="3">
+            <name>The Bomb</name>
+            <team>Fatcats</team>
+            <weight>14oz</weight>
+            <freq1>ch-75</freq1>
+            <freq2>ch-70</freq2>
+          </robot>
+          <robot id="4">
+            <name>Sweet Knocker</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>The Fleas</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Mashed Potatoes</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>Wild One</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Dome of Death</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="5" loserto="8">
+            <slots>
+              <slot robot="1" from="" />
+              <slot robot="8" from="" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="5" loserto="8">
+            <slots>
+              <slot robot="3" from="" />
+              <slot robot="6" from="" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="6" loserto="9">
+            <slots>
+              <slot robot="4" from="" />
+              <slot robot="5" from="" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="6" loserto="9">
+            <slots>
+              <slot robot="2" from="" />
+              <slot robot="7" from="" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="7" loserto="11">
+            <slots>
+              <slot robot="1" from="1" />
+              <slot robot="3" from="2" />
+            </slots>
+          </match>
+          <match matchid="6" winnerto="7" loserto="10">
+            <slots>
+              <slot robot="5" from="3" />
+              <slot robot="7" from="4" />
+            </slots>
+          </match>
+          <match matchid="7" winnerto="F" loserto="13">
+            <slots>
+              <slot robot="3" from="5" />
+              <slot robot="7" from="6" />
+            </slots>
+          </match>
+          <match matchid="8" winnerto="10" loserto="">
+            <slots>
+              <slot robot="8" from="1" />
+              <slot robot="6" from="2" />
+            </slots>
+          </match>
+          <match matchid="9" winnerto="11" loserto="">
+            <slots>
+              <slot robot="4" from="3" />
+              <slot robot="2" from="4" />
+            </slots>
+          </match>
+          <match matchid="10" winnerto="12" loserto="">
+            <slots>
+              <slot robot="5" from="6" />
+              <slot robot="6" from="8" />
+            </slots>
+          </match>
+          <match matchid="11" winnerto="12" loserto="">
+            <slots>
+              <slot robot="1" from="5" />
+              <slot robot="2" from="9" />
+            </slots>
+          </match>
+          <match matchid="12" winnerto="13" loserto="">
+            <slots>
+              <slot robot="5" from="10" />
+              <slot robot="2" from="11" />
+            </slots>
+          </match>
+          <match matchid="13" winnerto="F" loserto="">
+            <slots>
+              <slot robot="7" from="7" />
+              <slot robot="2" from="12" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="">
+            <slots>
+              <slot robot="3" from="7" />
+              <slot robot="7" from="13" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+    </tournaments>
+  </event>
+</events>

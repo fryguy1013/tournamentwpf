@@ -15,10 +15,10 @@
                 <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Margin="2" x:Name="redrectangle">
                     <Rectangle.Style>
                         <Style>
-                            <Setter Property="Rectangle.Fill" Value="Gray"/>
+                            <Setter Property="Rectangle.Fill" Value="White"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=RedKnown}" Value="False">
-                                    <Setter Property="Rectangle.Fill" Value="Silver"/>
+                                    <Setter Property="Rectangle.Fill" Value="White"/>
                                     <!--<Setter Property="Rectangle.Content" Value="{Binding Path=RedDesc}"/>-->
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
@@ -35,10 +35,10 @@
                 <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Margin="2" x:Name="bluerectangle">
                     <Rectangle.Style>
                         <Style>
-                            <Setter Property="Rectangle.Fill" Value="Gray"/>
+                            <Setter Property="Rectangle.Fill" Value="White"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=BlueKnown}" Value="False">
-                                    <Setter Property="Rectangle.Fill" Value="Silver"/>
+                                    <Setter Property="Rectangle.Fill" Value="White"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
                                     <Setter Property="Rectangle.Fill" Value="#306080fa"/>
@@ -113,11 +113,17 @@
                         </WrapPanel>
                         
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width=".5*" />
                                 <ColumnDefinition Width=".5*" />
                             </Grid.ColumnDefinitions>
-                            <Rectangle MouseUp="MatchRedRobot_MouseUp" Grid.Row="0" Grid.Column="0" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
+                            <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="Silver" Width="200" VerticalAlignment="Stretch" HorizontalAlignment="Center" MouseDown="Timer_MouseDown" />
+                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="TimerValue" FontSize="60" Text="2:00" HorizontalAlignment="Center" MouseDown="Timer_MouseDown"></TextBlock>
+                            <Rectangle MouseUp="MatchRedRobot_MouseUp" Grid.Row="1" Grid.Column="0" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
                                 <Rectangle.Style>
                                     <Style>
                                         <Setter Property="Rectangle.Fill" Value="#30fa8080"/>
@@ -134,7 +140,7 @@
                                     </Style>
                                 </Rectangle.Style>
                             </Rectangle>
-                            <Rectangle MouseUp="MatchBlueRobot_MouseUp" Grid.Row="0" Grid.Column="1" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
+                            <Rectangle MouseUp="MatchBlueRobot_MouseUp" Grid.Row="1" Grid.Column="1" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
                                 <Rectangle.Style>
                                     <Style>
                                         <Setter Property="Rectangle.Fill" Value="#306080fa"/>
@@ -150,8 +156,8 @@
                                     </Style>
                                 </Rectangle.Style>
                             </Rectangle>
-                            <TextBlock Grid.Column="0" Text="{Binding Path=RedRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-                            <TextBlock Grid.Column="1" Text="{Binding Path=BlueRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=RedRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=BlueRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
                         </Grid>
                     </DockPanel>
                 </TabItem>

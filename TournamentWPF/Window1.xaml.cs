@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
 
 namespace TournamentWPF
 {
@@ -22,6 +23,8 @@ namespace TournamentWPF
     {
         private Random rand = new Random();
         private Event mainEvent;
+
+        private DispatcherTimer timer = new DispatcherTimer();
 
         private Tournament SelectedTournament { get { return Tournaments.SelectedItem as Tournament; } }
 
@@ -42,9 +45,37 @@ namespace TournamentWPF
             Tournaments.ItemsSource = tournamentsquery;
             Tournaments.SelectedIndex = 0;
 
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += new EventHandler(timer_Tick);
+
             UpdateRobots();
             UpdateMatches();
             UpdateBrackets();
+        }
+
+        DateTime startTime = DateTime.Now;
+        void timer_Tick(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+            TimeSpan diff = startTime - DateTime.Now;
+            if (diff.Ticks <= 0)
+            {
+                TimerValue.Text = "0:00";
+                timer.Stop();
+                return;
+            }
+            TimerValue.Text = String.Format("{0}:{1:00}", Math.Floor(diff.TotalMinutes), diff.Seconds);
+        }
+        private void Timer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            startTime = DateTime.Now.AddMinutes(2);
+            if (timer.IsEnabled)
+            {
+                timer.Stop();
+                TimerValue.Text = "2:00";
+            }
+            else
+                timer.Start();
         }
 
         private void UpdateRobots()
@@ -275,7 +306,7 @@ namespace TournamentWPF
                 Width = bracketwidth,
                 Height = 20,
                 Margin = new Thickness(5, 0, 0, 0),
-                Text = slot.Robot != null ? slot.Robot.Name : slot.Desc
+                Text = slot.Robot != null ? slot.Robot.Name : slot.Desc,
             };
             text.SetValue(Canvas.LeftProperty, right - rect.Width);
             text.SetValue(Canvas.TopProperty, top);
@@ -292,5 +323,7 @@ namespace TournamentWPF
             UpdateMatches();
             UpdateRobots();
         }
+
+
     }
 }
