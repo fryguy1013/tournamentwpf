@@ -2,7 +2,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:custom="clr-namespace:TournamentWPF"
-    Title="Window1" Height="600" Width="350" Loaded="Window_Loaded">
+    Title="Tournament Organizer" Height="600" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="MatchTemplate" DataType="TournamentWPF.Match">
             <Grid HorizontalAlignment="Stretch" Margin="0">
@@ -64,72 +64,157 @@
     <DockPanel>
         <Grid DockPanel.Dock="Right" Width="250">   
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <WrapPanel Grid.Row="0">
-                <Button Click="Button_Click">asdasd</Button>
-            </WrapPanel>            
-            <ScrollViewer Grid.Row="1" Name="scrollViewer1">
+            <Rectangle Grid.Row="0" Stroke="Black" Fill="AliceBlue" Height="20" />
+            <TextBlock Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" Text="Tournaments" />            
+            <StackPanel Grid.Row="1">
+                <ListBox KeyboardNavigation.DirectionalNavigation="Cycle" BorderBrush= "Transparent" x:Name="Tournaments" SelectionChanged="Tournaments_SelectionChanged">
+                    <ListBox.Resources>
+                        <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}" >
+                            <Setter Property="Margin" Value="2, 2, 2, 0" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Border Background="Transparent">
+                                            <RadioButton IsHitTestVisible="false" Focusable="false" Content="{Binding Path=WeightClass}" IsChecked="{Binding Path=IsSelected,RelativeSource={RelativeSource TemplatedParent},Mode=TwoWay}"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+            </StackPanel>
+            <Rectangle Grid.Row="2" Stroke="Black" Fill="AliceBlue" Height="20" />
+            <TextBlock Grid.Row="2" TextAlignment="Center" VerticalAlignment="Center" Text="Matches" />
+            <StackPanel Grid.Row="3" Margin="2">
+                <!--<Button Click="Button_Click">ASASD</Button>-->
+                <RadioButton x:Name="radAllMatches" Checked="MatchFilter_Checked" IsChecked="True">All matches</RadioButton>
+                <RadioButton x:Name="radRemainingMatches" Checked="MatchFilter_Checked">Matches to go</RadioButton>
+                <RadioButton x:Name="radNonemptyMatches" Checked="MatchFilter_Checked">Non-empty Matches</RadioButton>
+            </StackPanel>            
+            <ScrollViewer Grid.Row="4" Name="scrollViewer1">
                 <StackPanel>
-                    <ListBox Name="Matches" ItemTemplate="{StaticResource MatchTemplate}" SelectionChanged="Matches_SelectionChanged"/>
+                    <ListBox Name="Matches" ItemTemplate="{StaticResource MatchTemplate}" SelectionChanged="Matches_SelectionChanged" BorderThickness="0" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
         <Grid>
-            <TextBox x:Name="MainTextBox"></TextBox>
+            <TabControl>
+                <TabItem Header="Match" x:Name="MatchTab">
+                    <DockPanel>
+                        <WrapPanel DockPanel.Dock="Bottom">
+                            <Button Name="ResetMatch" Width="100" Height="20" Click="ResetMatch_Click" HorizontalAlignment="Center">Reset Match</Button>
+                        </WrapPanel>
+                        
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".5*" />
+                                <ColumnDefinition Width=".5*" />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle MouseUp="MatchRedRobot_MouseUp" Grid.Row="0" Grid.Column="0" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
+                                <Rectangle.Style>
+                                    <Style>
+                                        <Setter Property="Rectangle.Fill" Value="#30fa8080"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=RedKnown}" Value="False">
+                                                <Setter Property="Rectangle.Fill" Value="Silver"/>
+                                                <!--<Setter Property="Rectangle.Content" Value="{Binding Path=RedDesc}"/>-->
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
+                                                <Setter Property="Rectangle.Fill" Value="#fffa8080"/>
+                                                <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Rectangle.Style>
+                            </Rectangle>
+                            <Rectangle MouseUp="MatchBlueRobot_MouseUp" Grid.Row="0" Grid.Column="1" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
+                                <Rectangle.Style>
+                                    <Style>
+                                        <Setter Property="Rectangle.Fill" Value="#306080fa"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=BlueKnown}" Value="False">
+                                                <Setter Property="Rectangle.Fill" Value="Silver"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=BlueWins}" Value="True">
+                                                <Setter Property="Rectangle.Fill" Value="#ff6080fa"/>
+                                                <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Rectangle.Style>
+                            </Rectangle>
+                            <TextBlock Grid.Column="0" Text="{Binding Path=RedRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+                            <TextBlock Grid.Column="1" Text="{Binding Path=BlueRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+                        </Grid>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Robots">
+                    <DockPanel>
+                        <WrapPanel DockPanel.Dock="Bottom" Height="80">
+                            <Label Content="Name" />
+                            <TextBox x:Name="RobotName" Width="100" KeyUp="RobotName_KeyDown"/>
+                        </WrapPanel>
+                        <ListBox x:Name="Robots" SelectionChanged="Robots_SelectionChanged" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="TournamentWPF.Robot">
+                                    <Grid Width="150" Height="30" Margin="5">
+                                        <Rectangle StrokeThickness="1" Stroke="Transparent"
+                                            RadiusX="10" RadiusY="10" Fill="White" />
+                                        <Grid>
+                                            <Rectangle x:Name="BackgroundRect" Opacity="0.5" StrokeThickness="1" 
+                                                Stroke="Transparent" RadiusX="10" RadiusY="10" 
+                                                Fill="#FF001c31" />
+                                            <Rectangle StrokeThickness="1" Stroke="Black" RadiusX="6" RadiusY="6" >
+                                                <Rectangle.Fill>
+                                                    <LinearGradientBrush StartPoint="-0.51,0.41" EndPoint="1.43,0.41">
+                                                        <LinearGradientBrush.GradientStops>
+                                                            <GradientStop Color="Transparent" Offset="0"/>
+                                                            <GradientStop Color="#60FFFFFF" Offset="1"/>
+                                                        </LinearGradientBrush.GradientStops>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="0.6*"/>
+                                                    <RowDefinition Height="0.4*"/>
+                                                </Grid.RowDefinitions>
+                                                <Rectangle RadiusX="6" RadiusY="6" Margin="3" Grid.RowSpan="1" Grid.Row="0">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush EndPoint="0,0" StartPoint="0.3,1">
+                                                            <GradientStop Color="#44FFFFFF" Offset="0"/>
+                                                            <GradientStop Color="#66FFFFFF" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                            <Label Content="{Binding Path=Name}" HorizontalAlignment="Center" FontSize="14"/>
+                                            <Rectangle Fill="{x:Null}" Stroke="#FFFFFFFF" RadiusX="6" RadiusY="6" Margin="1" />
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </TabItem>
+                <TabItem Header="Brackets">
+                    <Canvas x:Name="Brackets" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        
+                    </Canvas>
+                </TabItem>
+            </TabControl>
         </Grid>
     </DockPanel>
-
-    <!--
-    <Window.Resources>
-
-    </Window.Resources>
-    <ItemsControl Name="Robots">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate DataType="TournamentWPF.Robot">
-                <Grid Width="150" Height="150" Margin="5">
-                    <Rectangle StrokeThickness="1" Stroke="Transparent"
-                            RadiusX="10" RadiusY="10" Fill="White"  />
-                    <Grid>
-                        <Rectangle x:Name="BackgroundRect" Opacity="0.5" StrokeThickness="1" 
-                              Stroke="Transparent" RadiusX="10" RadiusY="10" 
-                              Fill="#FF001c31" />
-                        <Rectangle StrokeThickness="1" Stroke="Black" RadiusX="6" RadiusY="6" >
-                            <Rectangle.Fill>
-                                <LinearGradientBrush StartPoint="-0.51,0.41" EndPoint="1.43,0.41">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="Transparent" Offset="0"/>
-                                        <GradientStop Color="#60FFFFFF" Offset="1"/>
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0.6*"/>
-                                <RowDefinition Height="0.4*"/>
-                            </Grid.RowDefinitions>
-                            <Rectangle RadiusX="6" RadiusY="6" Margin="3" Grid.RowSpan="1" Grid.Row="0">
-                                <Rectangle.Fill>
-                                    <LinearGradientBrush EndPoint="0,0" StartPoint="0.3,1">
-                                        <GradientStop Color="#44FFFFFF" Offset="0"/>
-                                        <GradientStop Color="#66FFFFFF" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Rectangle.Fill>
-                            </Rectangle>
-                        </Grid>
-                        <Label Content="{Binding Path=Name}" HorizontalAlignment="Center" FontSize="14"/>
-                        <Rectangle Fill="{x:Null}" Stroke="#FFFFFFFF" RadiusX="6" RadiusY="6" Margin="1" />
-                    </Grid>
-                </Grid>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
-    -->
 </Window>
