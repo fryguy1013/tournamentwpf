@@ -33,7 +33,7 @@ namespace TournamentWPF
                                 WeightClass = (string)tournament.Element("weightclass"),
                                 FinalWinnerId = (string)tournament.Element("finalwinner"),
                                 Robots =
-                                    (from robot in e.Descendants("robot")
+                                    (from robot in tournament.Descendants("robot")
                                     select new Robot
                                     {
                                         Id = (int)robot.Attribute("id"),
@@ -44,7 +44,7 @@ namespace TournamentWPF
                                         Channel2 = (string)robot.Element("freq2"),
                                     }).ToDictionary(r => r.Id),
                                 Matches =
-                                    (from match in e.Descendants("match")
+                                    (from match in tournament.Descendants("match")
                                     select new Match
                                     {
                                         MatchId = (string)match.Attribute("matchid"),
