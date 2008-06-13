@@ -163,10 +163,20 @@
                 </TabItem>
                 <TabItem Header="Robots">
                     <DockPanel>
-                        <WrapPanel DockPanel.Dock="Bottom" Height="80">
-                            <Label Content="Name" />
-                            <TextBox x:Name="RobotName" Width="100" KeyUp="RobotName_KeyDown"/>
-                        </WrapPanel>
+                        <StackPanel DockPanel.Dock="Bottom" Height="80">
+                            <WrapPanel>
+                                <Label Content="Name" />
+                                <TextBox x:Name="RobotName" Width="100" KeyUp="RobotName_KeyDown"/>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Content="Team" />
+                                <TextBox x:Name="RobotTeam" Width="100" KeyUp="RobotTeam_KeyDown"/>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label Content="Freq" />
+                                <TextBox x:Name="Frequency" Width="100" KeyUp="Frequency_KeyDown"/>
+                            </WrapPanel>
+                        </StackPanel>
                         <ListBox x:Name="Robots" SelectionChanged="Robots_SelectionChanged" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>

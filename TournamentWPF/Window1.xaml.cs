@@ -37,9 +37,11 @@ namespace TournamentWPF
         {
             mainEvent = new Event("tournament.xml");
 
+            /*
             foreach (Tournament t in mainEvent.Tournaments)
                 if (t.Matches.Count() == 0)
-                    mainEvent.LoadMatches();
+                    mainEvent.LoadMatches(t);
+            */
 
             var tournamentsquery = mainEvent.Tournaments;
             Tournaments.ItemsSource = tournamentsquery;
@@ -176,6 +178,8 @@ namespace TournamentWPF
                 return;
             Robot robot = Robots.SelectedItem as Robot;
             RobotName.Text = robot.Name;
+            Frequency.Text = robot.Channel1;
+            RobotTeam.Text = robot.Team;
         }
 
         private void RobotName_KeyDown(object sender, KeyEventArgs e)
@@ -184,6 +188,30 @@ namespace TournamentWPF
                 return;
             Robot robot = Robots.SelectedItem as Robot;
             robot.Name = RobotName.Text;
+
+            UpdateRobots();
+            UpdateMatches();
+            UpdateBrackets();
+        }
+
+        private void Frequency_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Robots.SelectedItem == null)
+                return;
+            Robot robot = Robots.SelectedItem as Robot;
+            robot.Channel1 = Frequency.Text;
+
+            UpdateRobots();
+            UpdateMatches();
+            UpdateBrackets();
+        }
+
+        private void RobotTeam_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Robots.SelectedItem == null)
+                return;
+            Robot robot = Robots.SelectedItem as Robot;
+            robot.Team = RobotTeam.Text;
 
             UpdateRobots();
             UpdateMatches();

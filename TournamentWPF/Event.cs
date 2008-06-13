@@ -175,7 +175,7 @@ namespace TournamentWPF
             return ret;
         }
 
-        public void LoadMatches()
+        public void LoadMatches(Tournament t)
         {
             XElement templates = XElement.Load("brackettemplates.xml");
 
@@ -189,9 +189,7 @@ namespace TournamentWPF
                               id = (string)m.Attribute("id"),
                               winner = (string)m.Element("winner"),
                               loser = (string)m.Element("loser")
-                          };
-
-            Tournament t = Tournaments.Single();
+                          };            
 
             foreach (var match in matches)
             {
