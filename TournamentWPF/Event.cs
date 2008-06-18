@@ -179,8 +179,19 @@ namespace TournamentWPF
         {
             XElement templates = XElement.Load("brackettemplates.xml");
 
+            string matchidstr = "";
+            if (t.Robots.Count <= 4)
+                matchidstr = "DE4";
+            else if (t.Robots.Count <= 8)
+                matchidstr = "DE8";
+            else if (t.Robots.Count <= 16)
+                matchidstr = "DE16";
+            else
+                throw new Exception("Don't know how to make that kind of bracket");
+
+
             var bracket = (from c in templates.Descendants("bracket")
-                           where (string)c.Attribute("id") == "DE8"
+                           where (string)c.Attribute("id") == matchidstr
                            select c).Single();
 
             var matches = from m in bracket.Descendants("match")

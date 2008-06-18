@@ -37,12 +37,10 @@ namespace TournamentWPF
         {
             mainEvent = new Event("tournament.xml");
 
-            /*
             foreach (Tournament t in mainEvent.Tournaments)
                 if (t.Matches.Count() == 0)
                     mainEvent.LoadMatches(t);
-            */
-
+            
             var tournamentsquery = mainEvent.Tournaments;
             Tournaments.ItemsSource = tournamentsquery;
             Tournaments.SelectedIndex = 0;
@@ -82,6 +80,9 @@ namespace TournamentWPF
 
         private void UpdateRobots()
         {
+            if (SelectedTournament == null)
+                return;
+
             var query = SelectedTournament.Robots.Values;
             Robots.ItemsSource = query.ToList();
         }
@@ -262,8 +263,11 @@ namespace TournamentWPF
 
         private void UpdateBrackets()
         {
+            if (SelectedTournament == null)
+                return;
+
             Brackets.Children.Clear();
-            AddBracket(SelectedTournament.FinalWinner, 540, 0, Colors.Silver);
+            AddBracket(SelectedTournament.FinalWinner, 720, 0, Colors.Silver);
         }
 
 

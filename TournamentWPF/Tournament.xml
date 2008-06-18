@@ -1,32 +1,307 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<events>
+﻿<events>
   <event>
-    <name>Test #1</name>
+    <name>RoboGames 2008</name>
     <date>7-14-2007 4:32:00</date>
     <tournaments>
       <tournament>
-        <weightclass>1 lb</weightclass>
+        <weightclass>150</weightclass>
+        <finalwinner></finalwinner>
         <robots>
           <robot id="1">
-            <name>Emsee Fry Pants</name>
-            <team>Burntpopcorn.net</team>
-            <weight>14oz</weight>
-            <freq1>ch-75</freq1>
-            <freq2>ch-70</freq2>
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
           </robot>
           <robot id="2">
-            <name>Ground Flip Flops</name>
-            <team>Burntpopcorn.net</team>
-            <weight>14oz</weight>
-            <freq1>ch-75</freq1>
-            <freq2>ch-70</freq2>
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
           </robot>
           <robot id="3">
-            <name>MC Pee Pants</name>
-            <team>Fatcats</team>
-            <weight>14oz</weight>
-            <freq1>ch-75</freq1>
-            <freq2>ch-70</freq2>
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="9">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="10">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="11">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="12">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="13">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="14">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="15">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="16">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>1 lb</weightclass>
+        <finalwinner></finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="9">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="10">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="11">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="12">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="13">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="14">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="15">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="16">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>3 lb</weightclass>
+        <finalwinner></finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
           </robot>
         </robots>
         <matches>

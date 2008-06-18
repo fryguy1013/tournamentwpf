@@ -96,4 +96,132 @@
     <seed id="8" match="1" />
   </bracket>
 
+  <bracket id="DE16">
+    <match id="1">
+      <winner>9</winner>
+      <loser>16</loser>
+    </match>
+    <match id="2">
+      <winner>9</winner>
+      <loser>16</loser>
+    </match>
+    <match id="3">
+      <winner>10</winner>
+      <loser>17</loser>
+    </match>
+    <match id="4">
+      <winner>10</winner>
+      <loser>17</loser>
+    </match>
+    <match id="5">
+      <winner>11</winner>
+      <loser>18</loser>
+    </match>
+    <match id="6">
+      <winner>11</winner>
+      <loser>18</loser>
+    </match>
+    <match id="7">
+      <winner>12</winner>
+      <loser>19</loser>
+    </match>
+    <match id="8">
+      <winner>12</winner>
+      <loser>19</loser>
+    </match>
+    <match id="9">
+      <winner>13</winner>
+      <loser>23</loser>
+    </match>
+    <match id="10">
+      <winner>13</winner>
+      <loser>22</loser>
+    </match>
+    <match id="11">
+      <winner>14</winner>
+      <loser>21</loser>
+    </match>
+    <match id="12">
+      <winner>14</winner>
+      <loser>20</loser>
+    </match>
+    <match id="13">
+      <winner>15</winner>
+      <loser>26</loser>
+    </match>
+    <match id="14">
+      <winner>15</winner>
+      <loser>27</loser>
+    </match>
+    <match id="15">
+      <winner>F</winner>
+      <loser>29</loser>
+    </match>
+    <match id="16">
+      <winner>20</winner>
+    </match>
+    <match id="17">
+      <winner>21</winner>
+    </match>
+    <match id="18">
+      <winner>22</winner>
+    </match>
+    <match id="19">
+      <winner>23</winner>
+    </match>
+    <match id="20">
+      <winner>24</winner>
+    </match>
+    <match id="21">
+      <winner>24</winner>
+    </match>
+    <match id="22">
+      <winner>25</winner>
+    </match>
+    <match id="23">
+      <winner>25</winner>
+    </match>
+    <match id="24">
+      <winner>26</winner>
+    </match>
+    <match id="25">
+      <winner>27</winner>
+    </match>
+    <match id="26">
+      <winner>28</winner>
+    </match>
+    <match id="27">
+      <winner>28</winner>
+    </match>
+    <match id="28">
+      <winner>29</winner>
+    </match>
+    <match id="29">
+      <winner>F</winner>
+    </match>
+
+    <match id="F">
+      <winner>Winner</winner>
+    </match>
+
+
+    <seed id="1" match="1" />
+    <seed id="2" match="5" />
+    <seed id="3" match="7" />
+    <seed id="4" match="3" />
+    <seed id="5" match="4" />
+    <seed id="6" match="8" />
+    <seed id="7" match="6" />
+    <seed id="8" match="2" />
+    <seed id="9" match="2" />
+    <seed id="10" match="6" />
+    <seed id="11" match="8" />
+    <seed id="12" match="4" />
+    <seed id="13" match="3" />
+    <seed id="14" match="7" />
+    <seed id="15" match="5" />
+    <seed id="16" match="1" />
+  </bracket>
+
+
 </brackets>

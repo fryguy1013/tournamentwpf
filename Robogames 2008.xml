@@ -1,0 +1,900 @@
+﻿<events>
+  <event>
+    <name>RoboGames 2008</name>
+    <date>7-14-2007 4:32:00</date>
+    <tournaments>
+      <tournament>
+        <weightclass>150</weightclass>
+        <finalwinner>4</finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Atom Bomb</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Crisp</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Microdrive</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>The Joke</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>Buzz Killington</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Pocket Touro</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="5" loserto="8">
+            <slots>
+              <slot robot="1" from="" />
+              <slot robot="8" from="" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="5" loserto="8">
+            <slots>
+              <slot robot="3" from="" />
+              <slot robot="6" from="" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="6" loserto="9">
+            <slots>
+              <slot robot="4" from="" />
+              <slot robot="5" from="" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="6" loserto="9">
+            <slots>
+              <slot robot="2" from="" />
+              <slot robot="7" from="" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="7" loserto="11">
+            <slots>
+              <slot robot="1" from="1" />
+              <slot robot="3" from="2" />
+            </slots>
+          </match>
+          <match matchid="6" winnerto="7" loserto="10">
+            <slots>
+              <slot robot="4" from="3" />
+              <slot robot="2" from="4" />
+            </slots>
+          </match>
+          <match matchid="7" winnerto="F" loserto="13">
+            <slots>
+              <slot robot="3" from="5" />
+              <slot robot="4" from="6" />
+            </slots>
+          </match>
+          <match matchid="8" winnerto="10" loserto="">
+            <slots>
+              <slot robot="8" from="1" />
+              <slot robot="6" from="2" />
+            </slots>
+          </match>
+          <match matchid="9" winnerto="11" loserto="">
+            <slots>
+              <slot robot="5" from="3" />
+              <slot robot="7" from="4" />
+            </slots>
+          </match>
+          <match matchid="10" winnerto="12" loserto="">
+            <slots>
+              <slot robot="2" from="6" />
+              <slot robot="6" from="8" />
+            </slots>
+          </match>
+          <match matchid="11" winnerto="12" loserto="">
+            <slots>
+              <slot robot="1" from="5" />
+              <slot robot="5" from="9" />
+            </slots>
+          </match>
+          <match matchid="12" winnerto="13" loserto="">
+            <slots>
+              <slot robot="2" from="10" />
+              <slot robot="1" from="11" />
+            </slots>
+          </match>
+          <match matchid="13" winnerto="F" loserto="">
+            <slots>
+              <slot robot="3" from="7" />
+              <slot robot="2" from="12" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="">
+            <slots>
+              <slot robot="4" from="7" />
+              <slot robot="3" from="13" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>1 lb</weightclass>
+        <finalwinner>7</finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Wild One</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Unblinking Eye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Rector</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>Pooky</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>Wolverine 2</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Misdirected Pedestrian</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>The Bomb</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Nibbler</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="9">
+            <name>Baron Underwear</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="10">
+            <name>Aim</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="11">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="12">
+            <name>Angry Dustpan</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="13">
+            <name>Black Wedge</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="14">
+            <name>Phaeton</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="15">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="16">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="9" loserto="16">
+            <slots>
+              <slot robot="1" from="" />
+              <slot robot="16" from="" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="9" loserto="16">
+            <slots>
+              <slot robot="8" from="" />
+              <slot robot="9" from="" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="10" loserto="17">
+            <slots>
+              <slot robot="4" from="" />
+              <slot robot="13" from="" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="10" loserto="17">
+            <slots>
+              <slot robot="5" from="" />
+              <slot robot="12" from="" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="11" loserto="18">
+            <slots>
+              <slot robot="2" from="" />
+              <slot robot="15" from="" />
+            </slots>
+          </match>
+          <match matchid="6" winnerto="11" loserto="18">
+            <slots>
+              <slot robot="7" from="" />
+              <slot robot="10" from="" />
+            </slots>
+          </match>
+          <match matchid="7" winnerto="12" loserto="19">
+            <slots>
+              <slot robot="3" from="" />
+              <slot robot="14" from="" />
+            </slots>
+          </match>
+          <match matchid="8" winnerto="12" loserto="19">
+            <slots>
+              <slot robot="6" from="" />
+              <slot robot="11" from="" />
+            </slots>
+          </match>
+          <match matchid="9" winnerto="13" loserto="23">
+            <slots>
+              <slot robot="1" from="1" />
+              <slot robot="9" from="2" />
+            </slots>
+          </match>
+          <match matchid="10" winnerto="13" loserto="22">
+            <slots>
+              <slot robot="13" from="3" />
+              <slot robot="12" from="4" />
+            </slots>
+          </match>
+          <match matchid="11" winnerto="14" loserto="21">
+            <slots>
+              <slot robot="2" from="5" />
+              <slot robot="7" from="6" />
+            </slots>
+          </match>
+          <match matchid="12" winnerto="14" loserto="20">
+            <slots>
+              <slot robot="3" from="7" />
+              <slot robot="6" from="8" />
+            </slots>
+          </match>
+          <match matchid="13" winnerto="15" loserto="26">
+            <slots>
+              <slot robot="1" from="9" />
+              <slot robot="12" from="10" />
+            </slots>
+          </match>
+          <match matchid="14" winnerto="15" loserto="27">
+            <slots>
+              <slot robot="7" from="11" />
+              <slot robot="3" from="12" />
+            </slots>
+          </match>
+          <match matchid="15" winnerto="F" loserto="29">
+            <slots>
+              <slot robot="12" from="13" />
+              <slot robot="7" from="14" />
+            </slots>
+          </match>
+          <match matchid="16" winnerto="20" loserto="">
+            <slots>
+              <slot robot="16" from="1" />
+              <slot robot="8" from="2" />
+            </slots>
+          </match>
+          <match matchid="17" winnerto="21" loserto="">
+            <slots>
+              <slot robot="4" from="3" />
+              <slot robot="5" from="4" />
+            </slots>
+          </match>
+          <match matchid="18" winnerto="22" loserto="">
+            <slots>
+              <slot robot="15" from="5" />
+              <slot robot="10" from="6" />
+            </slots>
+          </match>
+          <match matchid="19" winnerto="23" loserto="">
+            <slots>
+              <slot robot="14" from="7" />
+              <slot robot="11" from="8" />
+            </slots>
+          </match>
+          <match matchid="20" winnerto="24" loserto="">
+            <slots>
+              <slot robot="6" from="12" />
+              <slot robot="8" from="16" />
+            </slots>
+          </match>
+          <match matchid="21" winnerto="24" loserto="">
+            <slots>
+              <slot robot="2" from="11" />
+              <slot robot="4" from="17" />
+            </slots>
+          </match>
+          <match matchid="22" winnerto="25" loserto="">
+            <slots>
+              <slot robot="13" from="10" />
+              <slot robot="10" from="18" />
+            </slots>
+          </match>
+          <match matchid="23" winnerto="25" loserto="">
+            <slots>
+              <slot robot="9" from="9" />
+              <slot robot="14" from="19" />
+            </slots>
+          </match>
+          <match matchid="24" winnerto="26" loserto="">
+            <slots>
+              <slot robot="8" from="20" />
+              <slot robot="4" from="21" />
+            </slots>
+          </match>
+          <match matchid="25" winnerto="27" loserto="">
+            <slots>
+              <slot robot="13" from="22" />
+              <slot robot="14" from="23" />
+            </slots>
+          </match>
+          <match matchid="26" winnerto="28" loserto="">
+            <slots>
+              <slot robot="1" from="13" />
+              <slot robot="8" from="24" />
+            </slots>
+          </match>
+          <match matchid="27" winnerto="28" loserto="">
+            <slots>
+              <slot robot="3" from="14" />
+              <slot robot="13" from="25" />
+            </slots>
+          </match>
+          <match matchid="28" winnerto="29" loserto="">
+            <slots>
+              <slot robot="1" from="26" />
+              <slot robot="13" from="27" />
+            </slots>
+          </match>
+          <match matchid="29" winnerto="F" loserto="">
+            <slots>
+              <slot robot="7" from="15" />
+              <slot robot="13" from="28" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="">
+            <slots>
+              <slot robot="12" from="15" />
+              <slot robot="7" from="29" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>3 lb</weightclass>
+        <finalwinner>10</finalwinner>
+        <robots>
+          <robot id="1">
+            <name>T-Rex 2.0</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Terra Raptor</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Unknown Avenger</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>OFWW</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="5">
+            <name>Queen of Kings</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="6">
+            <name>Impact</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="7">
+            <name>Boudica</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="8">
+            <name>Car Car</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="9">
+            <name>Hurty Gurty</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="10">
+            <name>Mini Touro</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="11">
+            <name>Itsa?</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="12">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="13">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="14">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="15">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="16">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="9" loserto="16">
+            <slots>
+              <slot robot="1" from="" />
+              <slot robot="16" from="" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="9" loserto="16">
+            <slots>
+              <slot robot="8" from="" />
+              <slot robot="9" from="" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="10" loserto="17">
+            <slots>
+              <slot robot="4" from="" />
+              <slot robot="13" from="" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="10" loserto="17">
+            <slots>
+              <slot robot="5" from="" />
+              <slot robot="12" from="" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="11" loserto="18">
+            <slots>
+              <slot robot="2" from="" />
+              <slot robot="15" from="" />
+            </slots>
+          </match>
+          <match matchid="6" winnerto="11" loserto="18">
+            <slots>
+              <slot robot="7" from="" />
+              <slot robot="10" from="" />
+            </slots>
+          </match>
+          <match matchid="7" winnerto="12" loserto="19">
+            <slots>
+              <slot robot="3" from="" />
+              <slot robot="14" from="" />
+            </slots>
+          </match>
+          <match matchid="8" winnerto="12" loserto="19">
+            <slots>
+              <slot robot="6" from="" />
+              <slot robot="11" from="" />
+            </slots>
+          </match>
+          <match matchid="9" winnerto="13" loserto="23">
+            <slots>
+              <slot robot="1" from="1" />
+              <slot robot="9" from="2" />
+            </slots>
+          </match>
+          <match matchid="10" winnerto="13" loserto="22">
+            <slots>
+              <slot robot="4" from="3" />
+              <slot robot="5" from="4" />
+            </slots>
+          </match>
+          <match matchid="11" winnerto="14" loserto="21">
+            <slots>
+              <slot robot="2" from="5" />
+              <slot robot="10" from="6" />
+            </slots>
+          </match>
+          <match matchid="12" winnerto="14" loserto="20">
+            <slots>
+              <slot robot="3" from="7" />
+              <slot robot="11" from="8" />
+            </slots>
+          </match>
+          <match matchid="13" winnerto="15" loserto="26">
+            <slots>
+              <slot robot="9" from="9" />
+              <slot robot="4" from="10" />
+            </slots>
+          </match>
+          <match matchid="14" winnerto="15" loserto="27">
+            <slots>
+              <slot robot="10" from="11" />
+              <slot robot="11" from="12" />
+            </slots>
+          </match>
+          <match matchid="15" winnerto="F" loserto="29">
+            <slots>
+              <slot robot="4" from="13" />
+              <slot robot="10" from="14" />
+            </slots>
+          </match>
+          <match matchid="16" winnerto="20" loserto="">
+            <slots>
+              <slot robot="16" from="1" />
+              <slot robot="8" from="2" />
+            </slots>
+          </match>
+          <match matchid="17" winnerto="21" loserto="">
+            <slots>
+              <slot robot="13" from="3" />
+              <slot robot="12" from="4" />
+            </slots>
+          </match>
+          <match matchid="18" winnerto="22" loserto="">
+            <slots>
+              <slot robot="15" from="5" />
+              <slot robot="7" from="6" />
+            </slots>
+          </match>
+          <match matchid="19" winnerto="23" loserto="">
+            <slots>
+              <slot robot="14" from="7" />
+              <slot robot="6" from="8" />
+            </slots>
+          </match>
+          <match matchid="20" winnerto="24" loserto="">
+            <slots>
+              <slot robot="3" from="12" />
+              <slot robot="8" from="16" />
+            </slots>
+          </match>
+          <match matchid="21" winnerto="24" loserto="">
+            <slots>
+              <slot robot="2" from="11" />
+              <slot robot="12" from="17" />
+            </slots>
+          </match>
+          <match matchid="22" winnerto="25" loserto="">
+            <slots>
+              <slot robot="5" from="10" />
+              <slot robot="7" from="18" />
+            </slots>
+          </match>
+          <match matchid="23" winnerto="25" loserto="">
+            <slots>
+              <slot robot="1" from="9" />
+              <slot robot="6" from="19" />
+            </slots>
+          </match>
+          <match matchid="24" winnerto="26" loserto="">
+            <slots>
+              <slot robot="3" from="20" />
+              <slot robot="2" from="21" />
+            </slots>
+          </match>
+          <match matchid="25" winnerto="27" loserto="">
+            <slots>
+              <slot robot="5" from="22" />
+              <slot robot="1" from="23" />
+            </slots>
+          </match>
+          <match matchid="26" winnerto="28" loserto="">
+            <slots>
+              <slot robot="9" from="13" />
+              <slot robot="3" from="24" />
+            </slots>
+          </match>
+          <match matchid="27" winnerto="28" loserto="">
+            <slots>
+              <slot robot="11" from="14" />
+              <slot robot="1" from="25" />
+            </slots>
+          </match>
+          <match matchid="28" winnerto="29" loserto="">
+            <slots>
+              <slot robot="3" from="26" />
+              <slot robot="11" from="27" />
+            </slots>
+          </match>
+          <match matchid="29" winnerto="F" loserto="">
+            <slots>
+              <slot robot="10" from="15" />
+              <slot robot="3" from="28" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="">
+            <slots>
+              <slot robot="4" from="15" />
+              <slot robot="10" from="29" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>1 lb junior</weightclass>
+        <finalwinner></finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Skeletor</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Rector</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="3" loserto="4">
+            <slots>
+              <slot robot="1" from="" />
+              <slot robot="4" from="" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="3" loserto="4">
+            <slots>
+              <slot robot="2" from="" />
+              <slot robot="3" from="" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="F" loserto="5">
+            <slots>
+              <slot robot="1" from="1" />
+              <slot robot="2" from="2" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="5" loserto="">
+            <slots>
+              <slot robot="4" from="1" />
+              <slot robot="3" from="2" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="F" loserto="">
+            <slots>
+              <slot robot="1" from="3" />
+              <slot robot="" from="4" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="">
+            <slots>
+              <slot robot="2" from="3" />
+              <slot robot="" from="5" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>1 lb auto</weightclass>
+        <finalwinner></finalwinner>
+        <robots>
+          <robot id="1">
+            <name>Spiwer</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="2">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="3">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+          <robot id="4">
+            <name>Bye</name>
+            <team>Bye</team>
+            <weight>0</weight>
+            <freq1>n/a</freq1>
+            <freq2>n/a</freq2>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="3" loserto="4">
+            <slots>
+              <slot robot="1" from="" />
+              <slot robot="4" from="" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="3" loserto="4">
+            <slots>
+              <slot robot="2" from="" />
+              <slot robot="3" from="" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="F" loserto="5">
+            <slots>
+              <slot robot="" from="1" />
+              <slot robot="" from="2" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="5" loserto="">
+            <slots>
+              <slot robot="" from="1" />
+              <slot robot="" from="2" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="F" loserto="">
+            <slots>
+              <slot robot="" from="3" />
+              <slot robot="" from="4" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="">
+            <slots>
+              <slot robot="" from="3" />
+              <slot robot="" from="5" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+    </tournaments>
+  </event>
+</events>
