@@ -51,6 +51,19 @@ namespace TournamentWPF
             UpdateRobots();
             UpdateMatches();
             UpdateBrackets();
+
+            Console.WriteLine("------");
+            foreach (Tournament t in mainEvent.Tournaments)
+            {
+                var matches =
+                    from m in t.Matches.Values
+                    where m.RedRobot.Name != "Bye" &&
+                          m.BlueRobot.Name != "Bye"
+                    select m;
+
+                foreach (var m in matches)
+                    Console.WriteLine("{0},{1},{2},{3}", t.WeightClass, m.RedRobot, m.BlueRobot, m.Winner.Name);
+            }
         }
 
         DateTime startTime = DateTime.Now;
