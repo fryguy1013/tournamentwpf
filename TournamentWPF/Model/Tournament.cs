@@ -82,7 +82,7 @@ namespace TournamentWPF.Model
             foreach (Robot r in Robots.Values.OrderBy(r => r.Name == "Bye").ThenBy(r => rand.Next(100000)))
             {
                 string matchid = (string)bracket.Descendants("seed").Single(s => (int)s.Attribute("id") == seed).Attribute("match");
-                Console.WriteLine("seed {0} = {1}", seed, matchid);
+                //Console.WriteLine("seed {0} = {1}", seed, matchid);
                 Matches[matchid].AddMatchSlot().Robot = r;
                 seed++;
             }

@@ -14,6 +14,8 @@ namespace TournamentWPF.Model
         public string Date { get; set; }
         public List<Tournament> Tournaments { get; set; }
 
+        public static Action MatchChanged;
+
         public Event(string filename)
         {
             try
@@ -104,6 +106,8 @@ namespace TournamentWPF.Model
             {
                 Console.WriteLine(e.Message);
             }
+
+            MatchChanged += delegate { Save(filename); };
         }
 
         public void Save(string filename)

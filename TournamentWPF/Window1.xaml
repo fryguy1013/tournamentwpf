@@ -3,9 +3,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:custom="clr-namespace:TournamentWPF"
     xmlns:view="clr-namespace:TournamentWPF.View"
-    Title="Tournament Organizer" Height="600" Width="1000" Loaded="Window_Loaded"
+    Title="Tournament Organizer" Height="600" Width="1000"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
+        <DataTemplate x:Key="MatchSlotTemplate" DataType="TournamentWPF.Model.MatchSlot">
+            <Grid>
+                <Rectangle RadiusX="5" RadiusY="5" Margin="2">
+                    <Rectangle.Style>
+                        <Style>
+                            <Setter Property="Rectangle.Fill" Value="#ffdddddd"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Robot}" Value="{x:Null}">
+                                    <Setter Property="Rectangle.Fill" Value="Transparent"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsWinner}" Value="True">
+                                    <Setter Property="Rectangle.Fill" Value="#ff00FF26"/>
+                                    <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsLoser}" Value="True">
+                                    <Setter Property="Rectangle.Fill" Value="#ffbbbbbb"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Label Content="{Binding Desc}" />
+            </Grid>
+        </DataTemplate>
+        
         <DataTemplate x:Key="MatchTemplate" DataType="TournamentWPF.Match">
             <Grid HorizontalAlignment="Stretch" Margin="0">
                 <Grid.ColumnDefinitions>
@@ -13,48 +40,10 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Margin="2" x:Name="redrectangle">
-                    <Rectangle.Style>
-                        <Style>
-                            <Setter Property="Rectangle.Fill" Value="White"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=RedKnown}" Value="False">
-                                    <Setter Property="Rectangle.Fill" Value="White"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
-                                    <Setter Property="Rectangle.Fill" Value="#fffa8080"/>
-                                    <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=BlueWins}" Value="True">
-                                    <Setter Property="Rectangle.Fill" Value="#30fa8080"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Rectangle.Style>
-                </Rectangle>
-                <Rectangle Grid.Column="2" RadiusX="5" RadiusY="5" Margin="2" x:Name="bluerectangle">
-                    <Rectangle.Style>
-                        <Style>
-                            <Setter Property="Rectangle.Fill" Value="White"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=BlueKnown}" Value="False">
-                                    <Setter Property="Rectangle.Fill" Value="White"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
-                                    <Setter Property="Rectangle.Fill" Value="#306080fa"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=BlueWins}" Value="True">
-                                    <Setter Property="Rectangle.Fill" Value="#ff6080fa"/>
-                                    <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Rectangle.Style>
-                </Rectangle>
-                
-                <TextBlock Grid.Column="0" Text="{Binding Path=MatchId}" x:Name="MatchId" TextAlignment="Center" VerticalAlignment="Center"/>
-                <Label Grid.Column="1" Width="100" Content="{Binding Path=RedRobot}" x:Name="RedLabel" />
-                <Label Grid.Column="2" Width="100" Content="{Binding Path=BlueRobot}" x:Name="BlueLabel" />
+
+                <TextBlock Grid.Column="0" Text="{Binding Path=MatchId}" x:Name="MatchId" TextAlignment="Center" VerticalAlignment="Center"/>               
+                <ContentPresenter Grid.Column="1" Content="{Binding Red}" ContentTemplate="{StaticResource MatchSlotTemplate}"/>
+                <ContentPresenter Grid.Column="2" Content="{Binding Blue}" ContentTemplate="{StaticResource MatchSlotTemplate}"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -110,16 +99,16 @@
         <Grid>
             <TabControl>
                 <TabItem Header="Match" x:Name="MatchTab">
-                    <view:ActiveMatchView DataContext="{Binding SelectedItem, ElementName=Matches}"></view:ActiveMatchView>
+                    <view:ActiveMatchView SelectedMatch="{Binding SelectedItem, ElementName=Matches}" />
                 </TabItem>
                 <TabItem Header="Robots">
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Bottom">
                             <WrapPanel>
                                 <Label Content="Name" />
-                                <TextBox x:Name="RobotName" Width="100" Text="{Binding SelectedItem.Name, ElementName=Robots}" KeyUp="RobotName_KeyDown"/>
+                                <TextBox x:Name="RobotName" Width="100" Text="{Binding SelectedItem.Name, ElementName=Robots, UpdateSourceTrigger=PropertyChanged}" />
                                 <Label Content="Team" />
-                                <TextBox x:Name="RobotTeam" Width="100" Text="{Binding SelectedItem.Team, ElementName=Robots}" KeyUp="RobotTeam_KeyDown"/>
+                                <TextBox x:Name="RobotTeam" Width="100" Text="{Binding SelectedItem.Team, ElementName=Robots, UpdateSourceTrigger=PropertyChanged}" />
                             </WrapPanel>
                         </StackPanel>
                         <ListBox x:Name="Robots"
@@ -173,10 +162,7 @@
                     </DockPanel>
                 </TabItem>
                 <TabItem Header="Brackets">
-                    <ScrollViewer>
-                        <Canvas x:Name="Brackets" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="1000">                        
-                        </Canvas>
-                    </ScrollViewer>
+                    <view:TournamentBrackets SelectedTournament="{Binding SelectedTournament}" />
                 </TabItem>
             </TabControl>
         </Grid>

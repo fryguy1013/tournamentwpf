@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TournamentWPF.Model;
+using System.ComponentModel;
+using TournamentWPF.ViewModel;
 
 namespace TournamentWPF.View
 {
@@ -52,7 +54,17 @@ namespace TournamentWPF.View
         }
         */
 
-        public Match SelectedMatch { get; set; }
+
+        public MatchViewModel SelectedMatch
+        {
+            get { return (MatchViewModel)GetValue(SelectedMatchProperty); }
+            set { SetValue(SelectedMatchProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SelectedMatch.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SelectedMatchProperty =
+            DependencyProperty.Register("SelectedMatch", typeof(MatchViewModel), typeof(ActiveMatchView), new UIPropertyMetadata(null));
+
 
         public ActiveMatchView()
         {
@@ -62,32 +74,30 @@ namespace TournamentWPF.View
 
         private void MatchRedRobot_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (SelectedMatch == null)
-                return;
-            SelectedMatch.Winner = SelectedMatch.RedRobot;
-            SelectedMatch.Loser = SelectedMatch.BlueRobot;
+            SetWinner(SelectedMatch.Red.Robot);
         }
         private void MatchBlueRobot_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (SelectedMatch == null)
-                return;
-            SelectedMatch.SetWinner(SelectedMatch.BlueRobot);
+            SetWinner(SelectedMatch.Blue.Robot);
         }
 
         private void ResetMatch_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedMatch == null)
-                return;
-
-            if ((SelectedMatch.WinnerMatchSlot != null && SelectedMatch.WinnerMatchSlot.Match != null && SelectedMatch.WinnerMatchSlot.Match.Winner != null) ||
-                (SelectedMatch.LoserMatchSlot != null && SelectedMatch.LoserMatchSlot.Match != null && SelectedMatch.LoserMatchSlot.Match.Winner != null))
-            {
-                MessageBox.Show("Unable to reset match because next match already has a winner");
-                return;
-            }
-
-            SelectedMatch.Winner = null;
-            SelectedMatch.Loser = null;
+            SetWinner(null);
         }
+
+        private void SetWinner(Robot r)
+        {
+            try
+            {
+                if (SelectedMatch != null)
+                    SelectedMatch.SetWinner(r);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to clear winner of match");
+            }
+        }
+
     }
 }

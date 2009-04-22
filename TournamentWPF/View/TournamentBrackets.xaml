@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="TournamentWPF.View.TournamentBrackets"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:model="clr-namespace:TournamentWPF.Model">
+    <UserControl.Resources>
+        <DataTemplate x:Key="MatchSlotTemplate" DataType="{x:Type model:MatchSlot}">
+            <Grid>
+                <Rectangle RadiusX="5" RadiusY="5">
+                    <Rectangle.Style>
+                        <Style>
+                            <Setter Property="Rectangle.Fill" Value="#ffdddddd"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Robot}" Value="{x:Null}">
+                                    <Setter Property="Rectangle.Fill" Value="#ffeeeeee"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsWinner}" Value="True">
+                                    <Setter Property="Rectangle.Fill" Value="#ff00FF26"/>
+                                    <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsLoser}" Value="True">
+                                    <Setter Property="Rectangle.Fill" Value="#ffbbbbbb"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <TextBlock Text="{Binding Desc}" Margin="5 0 0 0"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <Canvas x:Name="Brackets" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="1000">
+        </Canvas>
+    </ScrollViewer>
+</UserControl>
