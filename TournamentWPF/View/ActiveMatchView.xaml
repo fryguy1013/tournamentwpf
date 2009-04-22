@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="TournamentWPF.View.ActiveMatchView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Bottom">
+                <Button Name="ResetMatch" Width="100" Height="20" Click="ResetMatch_Click" HorizontalAlignment="Center">Reset Match</Button>
+            </WrapPanel>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--<Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="Silver" Width="200" VerticalAlignment="Stretch" HorizontalAlignment="Center" MouseDown="Timer_MouseDown" />
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="TimerValue" FontSize="60" Text="2:00" HorizontalAlignment="Center" MouseDown="Timer_MouseDown"></TextBlock>-->
+                <Rectangle Grid.Row="1" Grid.Column="0"
+                           Width="250" Height="250"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           RadiusX="20" RadiusY="20"
+                           Stroke="Black"
+                           MouseUp="MatchRedRobot_MouseUp">
+                    <Rectangle.Style>
+                        <Style>
+                            <Setter Property="Rectangle.Fill" Value="#30fa8080"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=RedKnown}" Value="False">
+                                    <Setter Property="Rectangle.Fill" Value="Silver"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
+                                    <Setter Property="Rectangle.Fill" Value="#fffa8080"/>
+                                    <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle Grid.Row="1" Grid.Column="1"
+                           Width="250" Height="250"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           RadiusX="20" RadiusY="20"
+                           Stroke="Black"
+                           MouseUp="MatchBlueRobot_MouseUp">
+                    <Rectangle.Style>
+                        <Style>
+                            <Setter Property="Rectangle.Fill" Value="#306080fa"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=BlueKnown}" Value="False">
+                                    <Setter Property="Rectangle.Fill" Value="Silver"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=BlueWins}" Value="True">
+                                    <Setter Property="Rectangle.Fill" Value="#ff6080fa"/>
+                                    <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <TextBlock Grid.Row="1" Grid.Column="0"
+                           Text="{Binding Path=RedRobot}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" FontSize="24" />
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           Text="{Binding Path=BlueRobot}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="24"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

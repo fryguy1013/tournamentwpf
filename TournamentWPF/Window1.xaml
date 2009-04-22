@@ -2,7 +2,9 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:custom="clr-namespace:TournamentWPF"
-    Title="Tournament Organizer" Height="600" Width="1000" Loaded="Window_Loaded">
+    xmlns:view="clr-namespace:TournamentWPF.View"
+    Title="Tournament Organizer" Height="600" Width="1000" Loaded="Window_Loaded"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Window.Resources>
         <DataTemplate x:Key="MatchTemplate" DataType="TournamentWPF.Match">
             <Grid HorizontalAlignment="Stretch" Margin="0">
@@ -10,7 +12,6 @@
                     <ColumnDefinition Width="15"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
-                    <!--<ColumnDefinition Width="100"/>-->
                 </Grid.ColumnDefinitions>
                 <Rectangle Grid.Column="1" RadiusX="5" RadiusY="5" Margin="2" x:Name="redrectangle">
                     <Rectangle.Style>
@@ -19,7 +20,6 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=RedKnown}" Value="False">
                                     <Setter Property="Rectangle.Fill" Value="White"/>
-                                    <!--<Setter Property="Rectangle.Content" Value="{Binding Path=RedDesc}"/>-->
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
                                     <Setter Property="Rectangle.Fill" Value="#fffa8080"/>
@@ -51,12 +51,10 @@
                         </Style>
                     </Rectangle.Style>
                 </Rectangle>
-                <!--<Rectangle Grid.Column="2" Fill="Silver" RadiusX="5" RadiusY="5" Margin="2" x:Name="winnerrectangle"/>-->
                 
                 <TextBlock Grid.Column="0" Text="{Binding Path=MatchId}" x:Name="MatchId" TextAlignment="Center" VerticalAlignment="Center"/>
                 <Label Grid.Column="1" Width="100" Content="{Binding Path=RedRobot}" x:Name="RedLabel" />
                 <Label Grid.Column="2" Width="100" Content="{Binding Path=BlueRobot}" x:Name="BlueLabel" />
-                <!--<Label Grid.Column="2" Width="100" Content="{Binding Path=Winner}" x:Name="WinnerLabel" />-->
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -69,11 +67,12 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="0" Stroke="Black" Fill="AliceBlue" Height="20" />
             <TextBlock Grid.Row="0" TextAlignment="Center" VerticalAlignment="Center" Text="Tournaments" />            
             <StackPanel Grid.Row="1">
-                <ListBox KeyboardNavigation.DirectionalNavigation="Cycle" BorderBrush= "Transparent" x:Name="Tournaments" SelectionChanged="Tournaments_SelectionChanged">
+                <ListBox KeyboardNavigation.DirectionalNavigation="Cycle" BorderBrush="Transparent" x:Name="Tournaments" SelectedItem="{Binding SelectedTournament}">
                     <ListBox.Resources>
                         <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}" >
                             <Setter Property="Margin" Value="2, 2, 2, 0" />
@@ -93,91 +92,40 @@
             <Rectangle Grid.Row="2" Stroke="Black" Fill="AliceBlue" Height="20" />
             <TextBlock Grid.Row="2" TextAlignment="Center" VerticalAlignment="Center" Text="Matches" />
             <StackPanel Grid.Row="3" Margin="2">
-                <!--<Button Click="Button_Click">ASASD</Button>-->
                 <RadioButton x:Name="radAllMatches" Checked="MatchFilter_Checked" IsChecked="True">All matches</RadioButton>
                 <RadioButton x:Name="radRemainingMatches" Checked="MatchFilter_Checked">Matches to go</RadioButton>
                 <RadioButton x:Name="radNonemptyMatches" Checked="MatchFilter_Checked">Non-empty Matches</RadioButton>
             </StackPanel>            
             <ScrollViewer Grid.Row="4" Name="scrollViewer1">
                 <StackPanel>
-                    <ListBox Name="Matches" ItemTemplate="{StaticResource MatchTemplate}" SelectionChanged="Matches_SelectionChanged" BorderThickness="0" />
+                    <ListBox x:Name="Matches"
+                             ItemTemplate="{StaticResource MatchTemplate}"
+                             BorderThickness="0" />
                 </StackPanel>
             </ScrollViewer>
+            <StackPanel Grid.Row="5" Orientation="Horizontal">
+                <Button x:Name="btnGenerateMatches" Click="btnGenerateMatches_Click">Generate</Button>
+            </StackPanel>
         </Grid>
         <Grid>
             <TabControl>
                 <TabItem Header="Match" x:Name="MatchTab">
-                    <DockPanel>
-                        <WrapPanel DockPanel.Dock="Bottom">
-                            <Button Name="ResetMatch" Width="100" Height="20" Click="ResetMatch_Click" HorizontalAlignment="Center">Reset Match</Button>
-                        </WrapPanel>
-                        
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="60" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width=".5*" />
-                                <ColumnDefinition Width=".5*" />
-                            </Grid.ColumnDefinitions>
-                            <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="Silver" Width="200" VerticalAlignment="Stretch" HorizontalAlignment="Center" MouseDown="Timer_MouseDown" />
-                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="TimerValue" FontSize="60" Text="2:00" HorizontalAlignment="Center" MouseDown="Timer_MouseDown"></TextBlock>
-                            <Rectangle MouseUp="MatchRedRobot_MouseUp" Grid.Row="1" Grid.Column="0" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
-                                <Rectangle.Style>
-                                    <Style>
-                                        <Setter Property="Rectangle.Fill" Value="#30fa8080"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=RedKnown}" Value="False">
-                                                <Setter Property="Rectangle.Fill" Value="Silver"/>
-                                                <!--<Setter Property="Rectangle.Content" Value="{Binding Path=RedDesc}"/>-->
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=RedWins}" Value="True">
-                                                <Setter Property="Rectangle.Fill" Value="#fffa8080"/>
-                                                <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Rectangle.Style>
-                            </Rectangle>
-                            <Rectangle MouseUp="MatchBlueRobot_MouseUp" Grid.Row="1" Grid.Column="1" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="20" RadiusY="20" Stroke="Black">
-                                <Rectangle.Style>
-                                    <Style>
-                                        <Setter Property="Rectangle.Fill" Value="#306080fa"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=BlueKnown}" Value="False">
-                                                <Setter Property="Rectangle.Fill" Value="Silver"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=BlueWins}" Value="True">
-                                                <Setter Property="Rectangle.Fill" Value="#ff6080fa"/>
-                                                <Setter Property="Rectangle.Stroke" Value="#ff000000"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Rectangle.Style>
-                            </Rectangle>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=RedRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-                            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=BlueRobot}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
-                        </Grid>
-                    </DockPanel>
+                    <view:ActiveMatchView DataContext="{Binding SelectedItem, ElementName=Matches}"></view:ActiveMatchView>
                 </TabItem>
                 <TabItem Header="Robots">
                     <DockPanel>
-                        <StackPanel DockPanel.Dock="Bottom" Height="80">
+                        <StackPanel DockPanel.Dock="Bottom">
                             <WrapPanel>
                                 <Label Content="Name" />
-                                <TextBox x:Name="RobotName" Width="100" KeyUp="RobotName_KeyDown"/>
-                            </WrapPanel>
-                            <WrapPanel>
+                                <TextBox x:Name="RobotName" Width="100" Text="{Binding SelectedItem.Name, ElementName=Robots}" KeyUp="RobotName_KeyDown"/>
                                 <Label Content="Team" />
-                                <TextBox x:Name="RobotTeam" Width="100" KeyUp="RobotTeam_KeyDown"/>
-                            </WrapPanel>
-                            <WrapPanel>
-                                <Label Content="Freq" />
-                                <TextBox x:Name="Frequency" Width="100" KeyUp="Frequency_KeyDown"/>
+                                <TextBox x:Name="RobotTeam" Width="100" Text="{Binding SelectedItem.Team, ElementName=Robots}" KeyUp="RobotTeam_KeyDown"/>
                             </WrapPanel>
                         </StackPanel>
-                        <ListBox x:Name="Robots" SelectionChanged="Robots_SelectionChanged" HorizontalAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListBox x:Name="Robots"
+                                 HorizontalAlignment="Stretch"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ItemsSource="{Binding SelectedTournament.Robots.Values}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel Orientation="Horizontal"/>
@@ -186,8 +134,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="TournamentWPF.Robot">
                                     <Grid Width="150" Height="30" Margin="5">
-                                        <Rectangle StrokeThickness="1" Stroke="Transparent"
-                                            RadiusX="10" RadiusY="10" Fill="White" />
+                                        <Rectangle StrokeThickness="1" Stroke="Transparent" RadiusX="10" RadiusY="10" Fill="White" />
                                         <Grid>
                                             <Rectangle x:Name="BackgroundRect" Opacity="0.5" StrokeThickness="1" 
                                                 Stroke="Transparent" RadiusX="10" RadiusY="10" 
@@ -227,10 +174,9 @@
                 </TabItem>
                 <TabItem Header="Brackets">
                     <ScrollViewer>
-                    <Canvas x:Name="Brackets" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="1000">
-                        
-                    </Canvas>
-                        </ScrollViewer>
+                        <Canvas x:Name="Brackets" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="1000">                        
+                        </Canvas>
+                    </ScrollViewer>
                 </TabItem>
             </TabControl>
         </Grid>

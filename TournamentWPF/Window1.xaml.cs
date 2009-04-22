@@ -13,20 +13,34 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using TournamentWPF.Model;
+using TournamentWPF.ViewModel;
+using System.ComponentModel;
 
 namespace TournamentWPF
 {
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Window1 : Window, INotifyPropertyChanged
     {
         private Random rand = new Random();
         private Event mainEvent;
 
-        private DispatcherTimer timer = new DispatcherTimer();
 
-        private Tournament SelectedTournament { get { return Tournaments.SelectedItem as Tournament; } }
+        private Tournament selectedTournament;
+        public Tournament SelectedTournament
+        {
+            get { return selectedTournament; }
+            set
+            {
+                selectedTournament = value;
+
+                UpdateBrackets();
+                UpdateMatches();
+                NotifyPropertyChanged("SelectedTournament");
+            }
+        }
 
         public Window1()
         {
@@ -36,81 +50,15 @@ namespace TournamentWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             mainEvent = new Event("tournament.xml");
-
-            foreach (Tournament t in mainEvent.Tournaments)
-                if (t.Matches.Count() == 0)
-                    mainEvent.LoadMatches(t);
             
             var tournamentsquery = mainEvent.Tournaments;
             Tournaments.ItemsSource = tournamentsquery;
             Tournaments.SelectedIndex = 0;
 
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += new EventHandler(timer_Tick);
-
-            UpdateRobots();
             UpdateMatches();
             UpdateBrackets();
 
-            Console.WriteLine("------");
-            foreach (Tournament t in mainEvent.Tournaments)
-            {
-                var matches =
-                    from m in t.Matches.Values
-                    where m.RedRobot.Name != "Bye" &&
-                          m.BlueRobot.Name != "Bye"
-                    select m;
-
-                foreach (var m in matches)
-                    Console.WriteLine("{0},{1},{2},{3}", t.WeightClass, m.RedRobot, m.BlueRobot, m.Winner.Name);
-            }
-        }
-
-        DateTime startTime = DateTime.Now;
-        void timer_Tick(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-            TimeSpan diff = startTime - DateTime.Now;
-            if (diff.Ticks <= 0)
-            {
-                TimerValue.Text = "0:00";
-                timer.Stop();
-                return;
-            }
-            TimerValue.Text = String.Format("{0}:{1:00}", Math.Floor(diff.TotalMinutes), diff.Seconds);
-        }
-        private void Timer_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            startTime = DateTime.Now.AddMinutes(2);
-            if (timer.IsEnabled)
-            {
-                timer.Stop();
-                TimerValue.Text = "2:00";
-            }
-            else
-                timer.Start();
-        }
-
-        private void UpdateRobots()
-        {
-            if (SelectedTournament == null)
-                return;
-
-            var query = SelectedTournament.Robots.Values;
-            Robots.ItemsSource = query.ToList();
-        }
-
-
-        class DisplayMatch
-        {
-            public string RedRobot { get; set; }
-            public string BlueRobot { get; set; }
-            public string Winner { get; set; }
-            public string MatchId { get; set; }
-            public bool RedWins { get; set; }
-            public bool BlueWins { get; set; }
-            public bool RedKnown { get; set; }
-            public bool BlueKnown { get; set; }
+            mainEvent.ExportToCsv();
         }
 
         private void UpdateMatches()
@@ -122,17 +70,8 @@ namespace TournamentWPF
             int index = Matches.SelectedIndex;
 
             var query = from match in SelectedTournament.Matches.Values
-                        select new DisplayMatch
-                        {
-                            RedRobot = match.RedRobot != null ? match.RedRobot.Name : match.Robots[0].Desc,
-                            BlueRobot = match.BlueRobot != null ? match.BlueRobot.Name : match.Robots[1].Desc,
-                            Winner = match.Winner != null ? match.Winner.Name : "",
-                            RedWins = match.Winner != null && match.Winner == match.RedRobot,
-                            BlueWins = match.Winner != null && match.Winner == match.BlueRobot,                            
-                            MatchId = match.MatchId,
-                            RedKnown = match.RedRobot != null,
-                            BlueKnown = match.BlueRobot != null,
-                        };
+                        select new MatchViewModel(match);
+
             if (radRemainingMatches.IsChecked == true)
             {
                 query = query.Where(m => m.Winner == "");
@@ -153,47 +92,9 @@ namespace TournamentWPF
             mainEvent.Save("tournament.xml");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Match match = (from m in SelectedTournament.Matches.Values
-                           where m.Winner == null &&
-                                 m.Robots.Count(r => r.Robot != null) == 2
-                           orderby rand.Next()
-                           select m).FirstOrDefault();
-            if (match == null)
-                return;
-
-            int winner = rand.Next(2);
-            match.Winner = match.Robots[winner].Robot;
-            match.Loser = match.Robots[1 - winner].Robot;
-
-            UpdateMatches();
-
-            mainEvent.Save("tournament.xml");
-        }
-
-        private void Matches_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.Matches.SelectedItem == null)
-                return;
-
-            //MainTextBox.Text = (this.Matches.SelectedItem as DisplayMatch).RedRobot;
-            MatchTab.DataContext = this.Matches.SelectedItem as DisplayMatch;
-        }
-
         private void MatchFilter_Checked(object sender, RoutedEventArgs e)
         {
             UpdateMatches();
-        }
-
-        private void Robots_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (Robots.SelectedItem == null)
-                return;
-            Robot robot = Robots.SelectedItem as Robot;
-            RobotName.Text = robot.Name;
-            Frequency.Text = robot.Channel1;
-            RobotTeam.Text = robot.Team;
         }
 
         private void RobotName_KeyDown(object sender, KeyEventArgs e)
@@ -203,19 +104,6 @@ namespace TournamentWPF
             Robot robot = Robots.SelectedItem as Robot;
             robot.Name = RobotName.Text;
 
-            UpdateRobots();
-            UpdateMatches();
-            UpdateBrackets();
-        }
-
-        private void Frequency_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (Robots.SelectedItem == null)
-                return;
-            Robot robot = Robots.SelectedItem as Robot;
-            robot.Channel1 = Frequency.Text;
-
-            UpdateRobots();
             UpdateMatches();
             UpdateBrackets();
         }
@@ -227,52 +115,11 @@ namespace TournamentWPF
             Robot robot = Robots.SelectedItem as Robot;
             robot.Team = RobotTeam.Text;
 
-            UpdateRobots();
             UpdateMatches();
             UpdateBrackets();
         }
 
-        private void MatchRedRobot_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (Matches.SelectedItem == null)
-                return;
-            Match match = SelectedTournament.Matches[(Matches.SelectedItem as DisplayMatch).MatchId];
-            match.Winner = match.RedRobot;
-            match.Loser = match.BlueRobot;
-            UpdateMatches();
-            UpdateBrackets();
-        }
-        private void MatchBlueRobot_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (Matches.SelectedItem == null)
-                return;
-            Match match = SelectedTournament.Matches[(Matches.SelectedItem as DisplayMatch).MatchId];
-            match.Winner = match.BlueRobot;
-            match.Loser = match.RedRobot;
 
-            UpdateMatches();
-            UpdateBrackets();
-        }
-
-        private void ResetMatch_Click(object sender, RoutedEventArgs e)
-        {
-            if (Matches.SelectedItem == null)
-                return;
-            Match match = SelectedTournament.Matches[(Matches.SelectedItem as DisplayMatch).MatchId];
-
-            if ((match.WinnerMatchSlot != null && match.WinnerMatchSlot.Match != null && match.WinnerMatchSlot.Match.Winner != null) ||
-                (match.LoserMatchSlot  != null && match.LoserMatchSlot.Match  != null && match.LoserMatchSlot.Match.Winner  != null))
-            {
-                MessageBox.Show("Unable to reset match because next match already has a winner");
-                return;
-            }
-
-            match.Winner = null;
-            match.Loser = null;
-
-            UpdateMatches();
-            UpdateBrackets();
-        }
 
         private void UpdateBrackets()
         {
@@ -362,13 +209,23 @@ namespace TournamentWPF
             return rect.Height;
         }
 
-        private void Tournaments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnGenerateMatches_Click(object sender, RoutedEventArgs e)
         {
+            if (mainEvent == null || SelectedTournament == null)
+                return;
+
+            SelectedTournament.Matches.Clear();
+            SelectedTournament.StartTournament();
+
             UpdateBrackets();
             UpdateMatches();
-            UpdateRobots();
         }
 
-
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+        }
     }
 }
