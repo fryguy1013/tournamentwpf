@@ -32,6 +32,10 @@ namespace TournamentWPF.ViewModel
                     NotifyPropertyChanged("RedWins");
                     NotifyPropertyChanged("BlueWins");
                 }
+                else if (e.PropertyName == "Result")
+                    NotifyPropertyChanged("Result");
+                else if (e.PropertyName == "MatchTime")
+                    NotifyPropertyChanged("MatchTime");
             };
         }
 
@@ -48,6 +52,9 @@ namespace TournamentWPF.ViewModel
         //public bool BlueWins { get { return match.Robots[1].IsWinner; } }
         //public bool RedKnown { get { return match.Robots[0].Robot != null; } }
         //public bool BlueKnown { get { return match.Robots[1].Robot != null; } }
+
+        public MatchResultType Result { get { return match.Result; } set { match.Result = value; } }
+        public string MatchTime { get { return match.MatchTime; } set { match.MatchTime = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string property)

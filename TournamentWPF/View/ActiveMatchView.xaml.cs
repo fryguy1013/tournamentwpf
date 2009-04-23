@@ -74,16 +74,19 @@ namespace TournamentWPF.View
 
         private void MatchRedRobot_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            SetWinner(SelectedMatch.Red.Robot);
+            if (!SelectedMatch.Red.IsWinner && !SelectedMatch.Blue.IsWinner)
+                SetWinner(SelectedMatch.Red.Robot);
         }
         private void MatchBlueRobot_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            SetWinner(SelectedMatch.Blue.Robot);
+            if (!SelectedMatch.Red.IsWinner && !SelectedMatch.Blue.IsWinner)
+                SetWinner(SelectedMatch.Blue.Robot);
         }
 
         private void ResetMatch_Click(object sender, RoutedEventArgs e)
         {
-            SetWinner(null);
+            if (SelectedMatch.Red.IsWinner || SelectedMatch.Blue.IsWinner)
+                SetWinner(null);
         }
 
         private void SetWinner(Robot r)

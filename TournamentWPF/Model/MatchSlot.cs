@@ -34,26 +34,32 @@ namespace TournamentWPF.Model
             set
             {
                 match = value;
-                match.PropertyChanged += (s, e) =>
+                if (match != null)
                 {
-                    NotifyPropertyChanged("IsWinner");
-                    NotifyPropertyChanged("IsLoser");
-                };
+                    match.PropertyChanged += (s, e) =>
+                    {
+                        NotifyPropertyChanged("IsWinner");
+                        NotifyPropertyChanged("IsLoser");
+                    };
+                }
             }
         }
+
+        private int points;
+        public int Points { get { return points; } set { points = value; NotifyPropertyChanged("Points"); } }
+
         public Match WinnerFrom { get; set; }
         public Match LoserFrom { get; set; }
-        public Match MatchFrom { get { if (WinnerFrom != null) return WinnerFrom; else return LoserFrom; } }
+        public Match MatchFrom { get { if (WinnerFrom != null) return WinnerFrom; else return LoserFrom; } }       
 
         public bool IsWinner
         {
             get
             {
-                if (Match == null) throw new Exception("xxx");
-                return Match.Winner != null && Match.Winner == Robot;
+                return Match != null && Match.Winner != null && Match.Winner == Robot;
             }
         }
-        public bool IsLoser { get { return Match.Winner != null && Match.Winner != Robot; } }
+        public bool IsLoser { get { return Match != null && Match.Winner != null && Match.Winner != Robot; } }
 
         public string Desc
         {

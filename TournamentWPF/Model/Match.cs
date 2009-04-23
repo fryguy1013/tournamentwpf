@@ -40,6 +40,12 @@ namespace TournamentWPF.Model
         public string WinnerMatchSlotId { get; set; }
         public string LoserMatchSlotId { get; set; }
 
+        private MatchResultType result = MatchResultType.None;
+        public MatchResultType Result { get { return result; } set { result = value; NotifyPropertyChanged("Result"); } }
+
+        private string matchTime = "";
+        public string MatchTime { get { return matchTime; } set { matchTime = value; NotifyPropertyChanged("MatchTime"); } } 
+
         public Robot Winner
         {
             get { return WinnerMatchSlot == null ? null : WinnerMatchSlot.Robot; }
@@ -135,4 +141,11 @@ namespace TournamentWPF.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
     }
+
+    public enum MatchResultType
+    {
+        None,
+        Knockout,
+        JudgesDecision,
+    };
 }

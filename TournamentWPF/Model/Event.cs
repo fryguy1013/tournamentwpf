@@ -54,8 +54,11 @@ namespace TournamentWPF.Model
                                             select new MatchSlot
                                             {
                                                 RobotId = (string)matchslot.Attribute("robot"),
-                                                MatchFromId = (string)matchslot.Attribute("from")
-                                            }).ToList()
+                                                MatchFromId = (string)matchslot.Attribute("from"),
+                                                Points = (int)matchslot.Attribute("points"),
+                                            }).ToList(),
+                                        Result = (MatchResultType)Enum.Parse(typeof(MatchResultType), (string)match.Attribute("result")),
+                                        MatchTime = (string)match.Attribute("duration"),
                                     }).ToDictionary(m => m.MatchId)
                             }).ToList(),
                     }).Single();
@@ -140,9 +143,12 @@ namespace TournamentWPF.Model
                                     from ms in m.Robots
                                     select new XElement("slot",
                                         new XAttribute("robot", ms.Robot != null ? ms.Robot.Id.ToString() : ""),
-                                        new XAttribute("from", ms.MatchFrom != null ? ms.MatchFrom.MatchId : "")
+                                        new XAttribute("from", ms.MatchFrom != null ? ms.MatchFrom.MatchId : ""),
+                                        new XAttribute("points", ms.Points.ToString())
                                     )
-                                )
+                                ),
+                                new XAttribute("result", m.Result),
+                                new XAttribute("duration", m.MatchTime != null ? m.MatchTime : "")
                             )
                         )
                     )
