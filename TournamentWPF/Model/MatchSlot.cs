@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Data;
+using System.Globalization;
+using System.Windows;
 
 namespace TournamentWPF.Model
 {
@@ -19,12 +24,16 @@ namespace TournamentWPF.Model
                 robot = value;
                 NotifyPropertyChanged("Robot");
                 NotifyPropertyChanged("Desc");
+                NotifyPropertyChanged("ImagePath");
+                NotifyPropertyChanged("Image");
                 if (robot != null)
                 {
                     robot.PropertyChanged += (s, e) =>
                     {
                         NotifyPropertyChanged("Robot");
                         NotifyPropertyChanged("Desc");
+                        NotifyPropertyChanged("ImagePath");
+                        NotifyPropertyChanged("Image");
                     };
                 }
             }
@@ -73,6 +82,38 @@ namespace TournamentWPF.Model
                     return "(L" + LoserFrom.MatchId + ")";
                 else
                     return "";
+            }
+        }
+        public string ImagePath
+        {
+            get
+            {
+                if (Robot == null || String.IsNullOrEmpty(Robot.ImagePath))
+                    return "nopicture-entry.png";
+                else
+                    return Robot.ImagePath;
+            }
+        }
+        public object Image
+        {
+            get
+            {
+                BitmapImage image = new BitmapImage();
+
+                try
+                {
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
+                    image.UriSource = new Uri(ImagePath, UriKind.Relative);
+                    image.EndInit();
+                }
+                catch
+                {
+                    return DependencyProperty.UnsetValue;
+                }
+
+                return image;
             }
         }
 

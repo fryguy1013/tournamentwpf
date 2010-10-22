@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TournamentWPF.Model;
 using System.ComponentModel;
 using TournamentWPF.ViewModel;
+using System.Windows.Threading;
 
 namespace TournamentWPF.View
 {
@@ -22,12 +23,8 @@ namespace TournamentWPF.View
     /// </summary>
     public partial class ActiveMatchView : UserControl
     {
-        //private DispatcherTimer timer = new DispatcherTimer();
-
-        //timer.Interval = TimeSpan.FromSeconds(1);
-        //timer.Tick += new EventHandler(timer_Tick);
-
-        /*
+        private DispatcherTimer timer = new DispatcherTimer();
+       
         DateTime startTime = DateTime.Now;
         void timer_Tick(object sender, EventArgs e)
         {
@@ -52,7 +49,6 @@ namespace TournamentWPF.View
             else
                 timer.Start();
         }
-        */
 
 
         public MatchViewModel SelectedMatch
@@ -69,17 +65,20 @@ namespace TournamentWPF.View
         public ActiveMatchView()
         {
             InitializeComponent();
+
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += new EventHandler(timer_Tick);
         }
 
 
         private void MatchRedRobot_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (!SelectedMatch.Red.IsWinner && !SelectedMatch.Blue.IsWinner)
+            if (SelectedMatch != null && !SelectedMatch.Red.IsWinner && !SelectedMatch.Blue.IsWinner)
                 SetWinner(SelectedMatch.Red.Robot);
         }
         private void MatchBlueRobot_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            if (!SelectedMatch.Red.IsWinner && !SelectedMatch.Blue.IsWinner)
+            if (SelectedMatch != null && !SelectedMatch.Red.IsWinner && !SelectedMatch.Blue.IsWinner)
                 SetWinner(SelectedMatch.Blue.Robot);
         }
 

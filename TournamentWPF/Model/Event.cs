@@ -41,6 +41,7 @@ namespace TournamentWPF.Model
                                         Id = (int)robot.Attribute("id"),
                                         Name = (string)robot.Element("name"),
                                         Team = (string)robot.Element("team"),
+                                        ImagePath = (string)robot.Element("image"),
                                     }).ToDictionary(r => r.Id),
                                 Matches =
                                     (from match in tournament.Descendants("match")
@@ -63,51 +64,61 @@ namespace TournamentWPF.Model
                             }).ToList(),
                     }).Single();
 
-                Name = thiselem.Name;
-                Date = thiselem.Date;
-                Tournaments = thiselem.Tournaments;
-
-                foreach (Tournament t in Tournaments)
-                {
-                    if (t.FinalWinnerId != null && t.FinalWinnerId.Length > 0)
-                        t.FinalWinner = new MatchSlot { Robot = t.Robots[Int32.Parse(t.FinalWinnerId)] };
-                    else
-                        t.FinalWinner = new MatchSlot();
-
-                    foreach (Match match in t.Matches.Values)
-                    {
-                        foreach (MatchSlot ms in match.Robots)
-                        {
-                            ms.Match = match;
-                            if (ms.RobotId.Length > 0)
-                                ms.Robot = t.Robots[Int32.Parse(ms.RobotId)];
-                        }
-
-                        if (match.WinnerMatchSlotId != null && match.WinnerMatchSlotId.Length > 0)
-                        {
-                            if (match.WinnerMatchSlotId == "Winner")
-                            {
-                                match.WinnerMatchSlot = t.FinalWinner;
-                            }
-                            else
-                            {
-                                match.WinnerMatchSlot = (from ms in t.Matches[match.WinnerMatchSlotId].Robots
-                                                         where ms.MatchFromId == match.MatchId
-                                                         select ms).Single();
-                            }
-                        }
-                        if (match.LoserMatchSlotId != null && match.LoserMatchSlotId.Length > 0)
-                        {
-                            match.LoserMatchSlot = (from ms in t.Matches[match.LoserMatchSlotId].Robots
-                                                    where ms.MatchFromId == match.MatchId
-                                                    select ms).Single();
-                        }
-                    }
-                }
+                _setup(filename, thiselem.Name, thiselem.Date, thiselem.Tournaments);
             }
             catch (IOException e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        public Event(string filename, string name, string date, List<Tournament> tournaments)
+        {
+            _setup(filename, name, date, tournaments);
+        }
+
+        private void _setup(string filename, string name, string date, List<Tournament> tournaments)
+        {
+            Name = name;
+            Date = date;
+            Tournaments = tournaments;
+
+            foreach (Tournament t in Tournaments)
+            {
+                if (t.FinalWinnerId != null && t.FinalWinnerId.Length > 0)
+                    t.FinalWinner = new MatchSlot { Robot = t.Robots[Int32.Parse(t.FinalWinnerId)] };
+                else
+                    t.FinalWinner = new MatchSlot();
+
+                foreach (Match match in t.Matches.Values)
+                {
+                    foreach (MatchSlot ms in match.Robots)
+                    {
+                        ms.Match = match;
+                        if (ms.RobotId.Length > 0)
+                            ms.Robot = t.Robots[Int32.Parse(ms.RobotId)];
+                    }
+
+                    if (match.WinnerMatchSlotId != null && match.WinnerMatchSlotId.Length > 0)
+                    {
+                        if (match.WinnerMatchSlotId == "Winner")
+                        {
+                            match.WinnerMatchSlot = t.FinalWinner;
+                        }
+                        else
+                        {
+                            match.WinnerMatchSlot = (from ms in t.Matches[match.WinnerMatchSlotId].Robots
+                                                        where ms.MatchFromId == match.MatchId
+                                                        select ms).Single();
+                        }
+                    }
+                    if (match.LoserMatchSlotId != null && match.LoserMatchSlotId.Length > 0)
+                    {
+                        match.LoserMatchSlot = (from ms in t.Matches[match.LoserMatchSlotId].Robots
+                                                where ms.MatchFromId == match.MatchId
+                                                select ms).Single();
+                    }
+                }
             }
 
             MatchChanged += delegate { Save(filename); };
@@ -130,7 +141,8 @@ namespace TournamentWPF.Model
                             select new XElement("robot",
                                 new XAttribute("id", r.Id),
                                 new XElement("name", r.Name),
-                                new XElement("team", r.Team)
+                                new XElement("team", r.Team),
+                                new XElement("image", r.ImagePath)
                             )
                         ),
                         new XElement("matches",

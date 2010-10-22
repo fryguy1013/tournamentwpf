@@ -19,10 +19,10 @@
             </WrapPanel>
 
             <Grid>
-                <!--<Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="Silver" Width="200" VerticalAlignment="Stretch" HorizontalAlignment="Center" MouseDown="Timer_MouseDown" />
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="TimerValue" FontSize="60" Text="2:00" HorizontalAlignment="Center" MouseDown="Timer_MouseDown"></TextBlock>-->
+                <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Fill="Silver" Width="200" Height="100" VerticalAlignment="Top" HorizontalAlignment="Center" MouseDown="Timer_MouseDown" />
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Name="TimerValue" FontSize="60" Text="2:00" HorizontalAlignment="Center" MouseDown="Timer_MouseDown"></TextBlock>
 
-                <Grid Margin="75" Width="250" Height="250" HorizontalAlignment="Left">
+                <Grid Margin="85" Width="250" Height="280" HorizontalAlignment="Left">
                     <Rectangle
                         RadiusX="20" RadiusY="20"
                         Stroke="Black"
@@ -42,10 +42,13 @@
                             </Style>
                         </Rectangle.Style>
                     </Rectangle>
+
+                    <Image Margin="35" Height="200" Width="200" Source="{Binding Red.Image}" Opacity="30" />
+
                     <TextBlock
                         Text="{Binding Path=Red.Desc}"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center" FontSize="24"
+                        VerticalAlignment="Top" FontSize="24"
                         MouseUp="MatchRedRobot_MouseUp"/>
                     <TextBox
                         Width="40"
@@ -53,11 +56,10 @@
                         Text="{Binding Path=Red.Points, UpdateSourceTrigger=PropertyChanged}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom" />
+
                 </Grid>
-                <Grid Margin="75" Width="250" Height="250" HorizontalAlignment="Right">
+                <Grid Margin="85" Width="250" Height="280" HorizontalAlignment="Right">
                     <Rectangle Grid.Row="1" Grid.Column="1"
-                        Width="250" Height="250"
-                        HorizontalAlignment="Center" VerticalAlignment="Center"
                         RadiusX="20" RadiusY="20"
                         Stroke="Black"
                         MouseUp="MatchBlueRobot_MouseUp">
@@ -76,10 +78,13 @@
                             </Style>
                         </Rectangle.Style>
                     </Rectangle>
+
+                    <Image Margin="35" Height="200" Width="200" Source="{Binding Blue.Image}" />
+
                     <TextBlock
                         Text="{Binding Path=Blue.Desc}"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
+                        VerticalAlignment="Top"
                         FontSize="24"
                         MouseUp="MatchBlueRobot_MouseUp"/>
                     <TextBox

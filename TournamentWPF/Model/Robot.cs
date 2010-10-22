@@ -8,13 +8,26 @@ namespace TournamentWPF.Model
 {
     public class Robot : INotifyPropertyChanged
     {
-        private int id;
-        private string name;
-        private string team;
+        private int _id;
+        private string _name;
+        private string _team;
+        private string _imagePath;
 
-        public int Id { get { return id; } set { id = value; NotifyPropertyChanged("Id"); } }
-        public string Name { get { return name; } set { name = value; NotifyPropertyChanged("Name"); } }
-        public string Team { get { return team; } set { team = value; NotifyPropertyChanged("Team"); } }
+        public int Id { get { return _id; } set { _id = value; NotifyPropertyChanged("Id"); } }
+        public string Name { get { return _name; } set { _name = value; NotifyPropertyChanged("Name"); } }
+        public string Team { get { return _team; } set { _team = value; NotifyPropertyChanged("Team"); } }
+        public string ImagePath
+        {
+            get
+            {
+                return _imagePath;
+            }
+            set
+            {
+                _imagePath = value;
+                NotifyPropertyChanged("ImagePath");
+            }
+        }
 
         public Robot()
         {

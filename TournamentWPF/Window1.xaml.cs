@@ -16,6 +16,7 @@ using System.Windows.Threading;
 using TournamentWPF.Model;
 using TournamentWPF.ViewModel;
 using System.ComponentModel;
+using TournamentWPF.Util;
 
 namespace TournamentWPF
 {
@@ -59,9 +60,24 @@ namespace TournamentWPF
         }
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            Event.MatchChanged();
+            if (Event.MatchChanged != null)
+                Event.MatchChanged();
         }
 
+        private void Import_Click(object sender, RoutedEventArgs e)
+        {
+            var import = new BotEventImport();
+            mainEvent = import.GetEvent("tournament.xml");
+            Event.MatchChanged();
+        }
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+            mainEvent.ExportToCsv();
+        }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 
 
         private void UpdateMatches()
@@ -116,6 +132,5 @@ namespace TournamentWPF
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-
     }
 }

@@ -69,12 +69,13 @@ namespace TournamentWPF.Model
             
             while (Robots.Count < bracket.Descendants("seed").Count())
             {
-                Robots.Add(Robots.Count + 1, new Robot
+                int id = Robots.Values.Max(x => x.Id) + 1;
+                Robots[id] = new Robot
                 {
-                    Id = Robots.Count + 1,
+                    Id = id,
                     Name = "Bye",
                     Team = "Bye",
-                });
+                };
             }
 
             int seed = 1;
