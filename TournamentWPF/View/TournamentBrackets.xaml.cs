@@ -46,7 +46,7 @@ namespace TournamentWPF.View
         {
             Brackets.Children.Clear();
             if (SelectedTournament != null)
-                AddBracket(SelectedTournament.FinalWinner, 720, 0, Colors.Silver);
+                AddBracket(SelectedTournament.FinalWinner, 1200, 0, Colors.Silver);
         }
 
 

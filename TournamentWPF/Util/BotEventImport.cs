@@ -13,13 +13,13 @@ namespace TournamentWPF.Util
     {
         public BotEventImport()
         {
-            //var client = new WebClient();
-            //var str = client.DownloadString(@"http://robogames.net/registration/event/entries_xml/9");
         }
 
         public Event GetEvent(string filename)
         {
-            var str = File.ReadAllText(@"C:\Users\kevin\Desktop\9.xml");
+            var client = new WebClient();
+            var str = client.DownloadString(@"http://robogames.net/registration/event/entries_xml/9");
+            //var str = File.ReadAllText(@"C:\Users\kevin\Desktop\9.xml");
             var xml = XDocument.Parse(str);
 
             int i = 0;

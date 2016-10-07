@@ -204,7 +204,9 @@ namespace TournamentWPF.Model
                     select m;
 
                 foreach (var m in matches)
-                    Console.WriteLine("{0},{1},{2},{3}", t.WeightClass, m.RedRobot, m.BlueRobot, m.Winner.Name);
+                {
+                    Console.WriteLine("{0},{1},{2}", t.WeightClass, m.Winner, m.Winner == m.RedRobot ? m.BlueRobot : m.RedRobot);
+                }
             }
         }
 
