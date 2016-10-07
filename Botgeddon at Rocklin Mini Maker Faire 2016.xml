@@ -1,0 +1,410 @@
+﻿<events>
+  <event>
+    <name>Botgeddon at ROcklin Mini Maker Faire 2016</name>
+    <date>10/1/16</date>
+    <tournaments>
+      <tournament>
+        <weightclass>Combat - 000 lbs, 5.3 oz / 150g</weightclass>
+        <finalwinner>2</finalwinner>
+        <robots>
+          <robot id="0">
+            <name>Yellowjacket</name>
+            <team>Strohbotics</team>
+            <image></image>
+          </robot>
+          <robot id="1">
+            <name>Thunderbolt</name>
+            <team>Strohbotics</team>
+            <image></image>
+          </robot>
+          <robot id="2">
+            <name>Dust Bunny</name>
+            <team>Misfit Robots</team>
+            <image></image>
+          </robot>
+          <robot id="3">
+            <name>bye</name>
+            <team>bye</team>
+            <image></image>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="3" loserto="4" result="None" duration="">
+            <slots>
+              <slot robot="1" from="" points="0" />
+              <slot robot="2" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="3" loserto="4" result="None" duration="">
+            <slots>
+              <slot robot="0" from="" points="0" />
+              <slot robot="3" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="F" loserto="5" result="None" duration="">
+            <slots>
+              <slot robot="2" from="1" points="0" />
+              <slot robot="0" from="2" points="0" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="5" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="1" from="1" points="0" />
+              <slot robot="3" from="2" points="0" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="F" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="0" from="3" points="0" />
+              <slot robot="1" from="4" points="0" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="2" from="3" points="0" />
+              <slot robot="1" from="5" points="0" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>Combat - 001 lb / 454g</weightclass>
+        <finalwinner>17</finalwinner>
+        <robots>
+          <robot id="4">
+            <name>Cuddle Bunny</name>
+            <team>Misfit Robots</team>
+            <image>7a2f99f400ab0658bef550b70ccb0d62.jpg</image>
+          </robot>
+          <robot id="5">
+            <name>Scotch Bonnet</name>
+            <team>Torpedo Robotics</team>
+            <image></image>
+          </robot>
+          <robot id="7">
+            <name>Pita</name>
+            <team>Sacbots</team>
+            <image></image>
+          </robot>
+          <robot id="8">
+            <name>Razors Edge</name>
+            <team>Sacbots</team>
+            <image></image>
+          </robot>
+          <robot id="9">
+            <name>Splematic</name>
+            <team>Splematic</team>
+            <image></image>
+          </robot>
+          <robot id="10">
+            <name>Maverick</name>
+            <team>Team Tanto</team>
+            <image></image>
+          </robot>
+          <robot id="11">
+            <name>Tsunami</name>
+            <team>Team Tanto</team>
+            <image></image>
+          </robot>
+          <robot id="12">
+            <name>Little Drummer Bot</name>
+            <team>Strohbotics</team>
+            <image></image>
+          </robot>
+          <robot id="13">
+            <name>Rhino</name>
+            <team>Strohbotics</team>
+            <image></image>
+          </robot>
+          <robot id="14">
+            <name>Pheidole</name>
+            <team>Team Kaiju</team>
+            <image></image>
+          </robot>
+          <robot id="15">
+            <name>Little Overload</name>
+            <team>Fast Electric Robots</team>
+            <image></image>
+          </robot>
+          <robot id="17">
+            <name>Chunker</name>
+            <team>Fast Electric Robots</team>
+            <image></image>
+          </robot>
+          <robot id="16">
+            <name>The most interesting wedge in the world</name>
+            <team>Fast Electric Robots</team>
+            <image></image>
+          </robot>
+          <robot id="6">
+            <name>Flurpy</name>
+            <team>Offbeat Robotics</team>
+            <image></image>
+          </robot>
+          <robot id="18">
+            <name>Deadlift</name>
+            <team>Strohbotics</team>
+            <image></image>
+          </robot>
+          <robot id="19">
+            <name>Bye</name>
+            <team>Bye</team>
+            <image></image>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="9" loserto="16" result="None" duration="">
+            <slots>
+              <slot robot="6" from="" points="0" />
+              <slot robot="18" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="9" loserto="16" result="None" duration="">
+            <slots>
+              <slot robot="17" from="" points="0" />
+              <slot robot="8" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="10" loserto="17" result="None" duration="">
+            <slots>
+              <slot robot="10" from="" points="0" />
+              <slot robot="7" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="10" loserto="17" result="None" duration="">
+            <slots>
+              <slot robot="15" from="" points="0" />
+              <slot robot="5" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="11" loserto="18" result="None" duration="">
+            <slots>
+              <slot robot="9" from="" points="0" />
+              <slot robot="19" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="6" winnerto="11" loserto="18" result="None" duration="">
+            <slots>
+              <slot robot="12" from="" points="0" />
+              <slot robot="14" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="7" winnerto="12" loserto="19" result="None" duration="">
+            <slots>
+              <slot robot="13" from="" points="0" />
+              <slot robot="16" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="8" winnerto="12" loserto="19" result="None" duration="">
+            <slots>
+              <slot robot="11" from="" points="0" />
+              <slot robot="4" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="9" winnerto="13" loserto="23" result="None" duration="">
+            <slots>
+              <slot robot="18" from="1" points="0" />
+              <slot robot="17" from="2" points="0" />
+            </slots>
+          </match>
+          <match matchid="10" winnerto="13" loserto="22" result="None" duration="">
+            <slots>
+              <slot robot="7" from="3" points="0" />
+              <slot robot="15" from="4" points="0" />
+            </slots>
+          </match>
+          <match matchid="11" winnerto="14" loserto="21" result="None" duration="">
+            <slots>
+              <slot robot="9" from="5" points="0" />
+              <slot robot="12" from="6" points="0" />
+            </slots>
+          </match>
+          <match matchid="12" winnerto="14" loserto="20" result="None" duration="">
+            <slots>
+              <slot robot="13" from="7" points="0" />
+              <slot robot="4" from="8" points="0" />
+            </slots>
+          </match>
+          <match matchid="13" winnerto="15" loserto="26" result="None" duration="">
+            <slots>
+              <slot robot="17" from="9" points="0" />
+              <slot robot="15" from="10" points="0" />
+            </slots>
+          </match>
+          <match matchid="14" winnerto="15" loserto="27" result="None" duration="">
+            <slots>
+              <slot robot="12" from="11" points="0" />
+              <slot robot="13" from="12" points="0" />
+            </slots>
+          </match>
+          <match matchid="15" winnerto="F" loserto="29" result="None" duration="">
+            <slots>
+              <slot robot="17" from="13" points="0" />
+              <slot robot="13" from="14" points="0" />
+            </slots>
+          </match>
+          <match matchid="16" winnerto="20" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="6" from="1" points="0" />
+              <slot robot="8" from="2" points="0" />
+            </slots>
+          </match>
+          <match matchid="17" winnerto="21" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="10" from="3" points="0" />
+              <slot robot="5" from="4" points="0" />
+            </slots>
+          </match>
+          <match matchid="18" winnerto="22" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="19" from="5" points="0" />
+              <slot robot="14" from="6" points="0" />
+            </slots>
+          </match>
+          <match matchid="19" winnerto="23" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="16" from="7" points="0" />
+              <slot robot="11" from="8" points="0" />
+            </slots>
+          </match>
+          <match matchid="20" winnerto="24" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="4" from="12" points="0" />
+              <slot robot="8" from="16" points="0" />
+            </slots>
+          </match>
+          <match matchid="21" winnerto="24" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="9" from="11" points="0" />
+              <slot robot="10" from="17" points="0" />
+            </slots>
+          </match>
+          <match matchid="22" winnerto="25" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="7" from="10" points="0" />
+              <slot robot="14" from="18" points="0" />
+            </slots>
+          </match>
+          <match matchid="23" winnerto="25" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="18" from="9" points="0" />
+              <slot robot="11" from="19" points="0" />
+            </slots>
+          </match>
+          <match matchid="24" winnerto="26" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="4" from="20" points="0" />
+              <slot robot="10" from="21" points="0" />
+            </slots>
+          </match>
+          <match matchid="25" winnerto="27" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="7" from="22" points="0" />
+              <slot robot="11" from="23" points="0" />
+            </slots>
+          </match>
+          <match matchid="26" winnerto="28" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="15" from="13" points="0" />
+              <slot robot="10" from="24" points="0" />
+            </slots>
+          </match>
+          <match matchid="27" winnerto="28" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="12" from="14" points="0" />
+              <slot robot="11" from="25" points="0" />
+            </slots>
+          </match>
+          <match matchid="28" winnerto="29" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="15" from="26" points="0" />
+              <slot robot="12" from="27" points="0" />
+            </slots>
+          </match>
+          <match matchid="29" winnerto="F" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="13" from="15" points="0" />
+              <slot robot="15" from="28" points="0" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="17" from="15" points="0" />
+              <slot robot="15" from="29" points="0" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+      <tournament>
+        <weightclass>Combat - 001 lb / 454g (plastic)</weightclass>
+        <finalwinner></finalwinner>
+        <robots />
+        <matches />
+      </tournament>
+      <tournament>
+        <weightclass>Combat - 003 lbs / 1.4 kg</weightclass>
+        <finalwinner>19</finalwinner>
+        <robots>
+          <robot id="18">
+            <name>Trilo</name>
+            <team>Team Kaiju</team>
+            <image></image>
+          </robot>
+          <robot id="19">
+            <name>Turbodog</name>
+            <team>Strohbotics</team>
+            <image></image>
+          </robot>
+          <robot id="20">
+            <name>Icky Mouse</name>
+            <team>Widow's Peak</team>
+            <image></image>
+          </robot>
+          <robot id="21">
+            <name>Jasons Revenge</name>
+            <team>Fast Electric Robots</team>
+            <image>00e3ad48464f8dd1a74c08c0639e0f16.jpg</image>
+          </robot>
+        </robots>
+        <matches>
+          <match matchid="1" winnerto="3" loserto="4" result="None" duration="">
+            <slots>
+              <slot robot="18" from="" points="0" />
+              <slot robot="20" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="2" winnerto="3" loserto="4" result="None" duration="">
+            <slots>
+              <slot robot="21" from="" points="0" />
+              <slot robot="19" from="" points="0" />
+            </slots>
+          </match>
+          <match matchid="3" winnerto="F" loserto="5" result="None" duration="">
+            <slots>
+              <slot robot="18" from="1" points="0" />
+              <slot robot="19" from="2" points="0" />
+            </slots>
+          </match>
+          <match matchid="4" winnerto="5" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="20" from="1" points="0" />
+              <slot robot="21" from="2" points="0" />
+            </slots>
+          </match>
+          <match matchid="5" winnerto="F" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="18" from="3" points="0" />
+              <slot robot="21" from="4" points="0" />
+            </slots>
+          </match>
+          <match matchid="F" winnerto="Winner" loserto="" result="None" duration="">
+            <slots>
+              <slot robot="19" from="3" points="0" />
+              <slot robot="21" from="5" points="0" />
+            </slots>
+          </match>
+        </matches>
+      </tournament>
+    </tournaments>
+  </event>
+</events>
